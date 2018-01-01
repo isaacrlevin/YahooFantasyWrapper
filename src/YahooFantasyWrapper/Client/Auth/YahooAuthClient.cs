@@ -1,10 +1,7 @@
 ﻿using System.Linq;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 using YahooFantasyWrapper.Configuration;
 using YahooFantasyWrapper.Models;
 using YahooFantasyWrapper.Infrastructure;
@@ -14,6 +11,8 @@ using Newtonsoft.Json;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 using System.Net.Http.Headers;
+using Microsoft.Extensions.Options;
+using System.Collections.Specialized;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace YahooFantasyWrapper.Client
@@ -100,7 +99,7 @@ namespace YahooFantasyWrapper.Client
         protected async Task<UserInfo> GetUserInfo()
         {
             string url = string.Format(AuthApiEndPoints.UserInfoServiceEndpoint.Resource, UserProfileGUID);
-            var tempEndPoint = new Endpoint
+            var tempEndPoint = new EndPoint
             {
                 BaseUri = AuthApiEndPoints.UserInfoServiceEndpoint.BaseUri,
                 Resource = url
@@ -159,7 +158,7 @@ namespace YahooFantasyWrapper.Client
                 Parameters = parameters
             });
 
-           Auth.AccessToken = ParseTokenResponse(await response.Content.ReadAsStringAsync(), AccessTokenKey);
+            Auth.AccessToken = ParseTokenResponse(await response.Content.ReadAsStringAsync(), AccessTokenKey);
             if (String.IsNullOrEmpty(Auth.AccessToken))
                 throw new UnexpectedResponseException(AccessTokenKey);
 

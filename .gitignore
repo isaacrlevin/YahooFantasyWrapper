@@ -4,3 +4,9 @@
 
 *.suo
 /src/YahooFantasyWrapper/obj
+/src/.vs/YahooFantasyWrapper/v15/Server/sqlite3
+/src/packages
+/src/TestWebProject/bin
+/src/TestWebProject/obj
+/src/YahooFantasyWrapper/bin/Debug/netstandard2.0
+/src/YahooFantasyWrapper/packages

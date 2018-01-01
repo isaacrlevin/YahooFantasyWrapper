@@ -7,7 +7,7 @@ namespace YahooFantasyWrapper.Client
     /// <summary>
     /// Base class for Api Endpoints
     /// </summary>
-    public class Endpoint
+    public class EndPoint
     {
         /// <summary>
         /// Base URI (service host address).

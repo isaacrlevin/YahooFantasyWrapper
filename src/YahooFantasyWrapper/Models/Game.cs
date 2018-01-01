@@ -79,6 +79,8 @@ namespace YahooFantasyWrapper.Models
         public GameWeeks GameWeeks { get; set; }
         [XmlElement(ElementName = "leagues", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public Leagues Leagues { get; set; }
+        [XmlElement(ElementName = "players", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
+        public Players Players { get; set; }
         [XmlElement(ElementName = "stat_categories", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public StatCategories StatCategories { get; set; }
         [XmlElement(ElementName = "position_types", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]

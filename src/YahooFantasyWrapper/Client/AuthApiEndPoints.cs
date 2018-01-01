@@ -10,11 +10,11 @@ namespace YahooFantasyWrapper.Client
         /// <summary>
         /// The request authorization endpoint
         /// </summary>
-        public static Endpoint AccessCodeServiceEndpoint
+        public static EndPoint AccessCodeServiceEndpoint
         {
             get
             {
-                return new Endpoint
+                return new EndPoint
                 {
                     BaseUri = "https://api.login.yahoo.com",
                     Resource = "/oauth2/request_auth"
@@ -25,11 +25,11 @@ namespace YahooFantasyWrapper.Client
         /// <summary>
         /// The acess token service endpoint
         /// </summary>
-        public static Endpoint AccessTokenServiceEndpoint
+        public static EndPoint AccessTokenServiceEndpoint
         {
             get
             {
-                return new Endpoint
+                return new EndPoint
                 {
                     BaseUri = "https://api.login.yahoo.com",
                     Resource = "/oauth2/get_token"
@@ -40,11 +40,11 @@ namespace YahooFantasyWrapper.Client
         /// <summary>
         /// Defines URI of service which allows to obtain information about user which is currently logged in.
         /// </summary>
-        public static Endpoint UserInfoServiceEndpoint
+        public static EndPoint UserInfoServiceEndpoint
         {
             get
             {
-                return new Endpoint
+                return new EndPoint
                 {
                     BaseUri = "https://social.yahooapis.com",
                     Resource = "/v1/user/{0}/profile?format=json"
