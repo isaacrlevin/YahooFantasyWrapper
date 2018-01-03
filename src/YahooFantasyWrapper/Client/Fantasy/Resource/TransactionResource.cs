@@ -8,16 +8,14 @@ namespace YahooFantasyWrapper.Client
 {
     public class TransactionResourceManager
     {
-        public async Task<Transaction> GetMeta(string gameKey, string AccessToken)
+        public async Task<Transaction> GetMeta(string transactionKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueMetaDataEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Transaction>(ApiEndpoints.TransactionEndpoint(transactionKey, EndpointSubResources.MetaData), AccessToken, "transaction");
         }
 
-        public async Task<Transaction> GetPlayers(string gameKey, string[] leagueKeys, string AccessToken)
+        public async Task<Transaction> GetPlayers(string transactionKey, string[] leagueKeys, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueLeaguesEndPoint(gameKey, leagueKeys), AccessToken, "game");
+            return await Utils.GetResource<Transaction>(ApiEndpoints.TransactionEndpoint(transactionKey, EndpointSubResources.Players), AccessToken, "transaction");
         }
     }
 }

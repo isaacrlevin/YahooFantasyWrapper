@@ -253,14 +253,101 @@ namespace YahooFantasyWrapper.Client
 
         #endregion
 
-        #region Transaction
+        #region Team
 
-        public static EndPoint TransactionMetaEndpoint(string transactionKey)
+        public static EndPoint TeamEndPoint(string teamKey, EndpointSubResources resource)
         {
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/transaction/{transactionKey}/players"
+                Resource = $"/team/{teamKey}/{resource.ToFriendlyString()}"
+            };
+        }
+        public static EndPoint TeamsEndPoint(string[] teamKeys, EndpointSubResourcesCollection subresources = null)
+        {
+            string teams = "";
+            if (teamKeys.Length > 0)
+            {
+                teams = $";team_keys={ string.Join(",", teamKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/teams{teams}{BuildSubResourcesList(subresources)}"
+            };
+        }
+
+        public static EndPoint TeamsLeagueEndPoint(string[] leagueKeys, EndpointSubResourcesCollection subresources = null)
+        {
+            string leagues = "";
+            if (leagueKeys.Length > 0)
+            {
+                leagues = $";league_keys={ string.Join(",", leagueKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/leagues{leagues}/teams{BuildSubResourcesList(subresources)}"
+            };
+        }
+
+        public static EndPoint TeamsUserGamesEndPoint(string[] gameKeys, EndpointSubResourcesCollection subresources = null)
+        {
+            string games = "";
+            if (gameKeys.Length > 0)
+            {
+                games = $";gameKeys={ string.Join(",", gameKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/users{LoginString}/games{games}{BuildSubResourcesList(subresources)}"
+            };
+        }
+
+        #endregion
+
+        #region Transaction
+
+        public static EndPoint TransactionEndpoint(string transactionKey, EndpointSubResources resource)
+        {
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/transaction/{transactionKey}/{resource.ToFriendlyString()}"
+            };
+        }
+
+        public static EndPoint TransactionsEndPoint(string[] transactionKeys, EndpointSubResourcesCollection subresources = null)
+        {
+            string transactions = "";
+            if (transactionKeys.Length > 0)
+            {
+                transactions = $";transaction_keys={ string.Join(",", transactionKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/transactions{transactions}{BuildSubResourcesList(subresources)}"
+            };
+        }
+
+        public static EndPoint TransactionsLeagueEndPoint(string[] leagueKeys, EndpointSubResourcesCollection subresources = null)
+        {
+            string leagues = "";
+            if (leagueKeys.Length > 0)
+            {
+                leagues = $";league_keys={ string.Join(",", leagueKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/leagues{leagues}{BuildSubResourcesList(subresources)}"
             };
         }
 

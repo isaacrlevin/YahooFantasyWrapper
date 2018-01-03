@@ -14,44 +14,38 @@ namespace YahooFantasyWrapper.Client
     {
         /// <summary>
         /// Get Leagues Meta
-        /// https://fantasysports.yahooapis.com/fantasy/v2/game/{gameKey}/metadata
+        /// https://fantasysports.yahooapis.com/fantasy/v2/game/{teamKey}/metadata
         /// </summary>
-        /// <param name="gameKey">List of LeagueKey to Query</param>
+        /// <param name="teamKey">List of LeagueKey to Query</param>
         /// <param name="AccessToken">Access Token from Auth Api</param>
         /// <returns>List of Leagues</returns>
-        public async Task<Team> GetMeta(string gameKey, string AccessToken)
+        public async Task<Team> GetMeta(string teamKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueMetaDataEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Team>(ApiEndpoints.TeamEndPoint(teamKey, EndpointSubResources.MetaData), AccessToken, "game");
         }
 
-        public async Task<Team> GetStats(string gameKey, string[] leagueKeys, string AccessToken)
+        public async Task<Team> GetStats(string teamKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueLeaguesEndPoint(gameKey, leagueKeys), AccessToken, "game");
+           return await Utils.GetResource<Team>(ApiEndpoints.TeamEndPoint(teamKey, EndpointSubResources.Stats), AccessToken, "game");
         }
 
-        public async Task<Team> GetStandings(string gameKey, string[] playerKeys, string AccessToken)
+        public async Task<Team> GetStandings(string teamKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeaguePlayersEndPoint(gameKey, playerKeys), AccessToken, "game");
+            return await Utils.GetResource<Team>(ApiEndpoints.TeamEndPoint(teamKey, EndpointSubResources.Standings), AccessToken, "game");
         }
 
-        public async Task<Team> GetRoster(string gameKey, string AccessToken)
+        public async Task<Team> GetRoster(string teamKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueLeagueWeeksEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Team>(ApiEndpoints.TeamEndPoint(teamKey, EndpointSubResources.Roster), AccessToken, "game");
         }
 
-        public async Task<Team> GetDraftResults(string gameKey, string AccessToken)
+        public async Task<Team> GetDraftResults(string teamKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueStatCategoriesEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Team>(ApiEndpoints.TeamEndPoint(teamKey, EndpointSubResources.DraftResults), AccessToken, "game");
         }
-        public async Task<Team> GetMatchups(string gameKey, string AccessToken)
+        public async Task<Team> GetMatchups(string teamKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueStatCategoriesEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Team>(ApiEndpoints.TeamEndPoint(teamKey, EndpointSubResources.Matchups), AccessToken, "game");
         }
     }
 }
