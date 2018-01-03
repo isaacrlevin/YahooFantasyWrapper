@@ -24,12 +24,12 @@ namespace YahooFantasyWrapper.Client
 
         #region Game
 
-        public static EndPoint GameMetaDataEndPoint(string gameKey)
+        public static EndPoint GameEndPoint(string gameKey, EndpointSubResources resource)
         {
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/game/{gameKey}/metadata"
+                Resource = $"/game/{gameKey}/{resource.ToFriendlyString()}"
             };
         }
 
@@ -51,43 +51,7 @@ namespace YahooFantasyWrapper.Client
             };
         }
 
-        public static EndPoint GameGameWeeksEndPoint(string gameKey)
-        {
-            return new EndPoint
-            {
-                BaseUri = BaseApiUrl,
-                Resource = $"/game/{gameKey}/game_weeks"
-            };
-        }
-
-        public static EndPoint GameStatCategoriesEndPoint(string gameKey)
-        {
-            return new EndPoint
-            {
-                BaseUri = BaseApiUrl,
-                Resource = $"/game/{gameKey}/stat_categories"
-            };
-        }
-
-        public static EndPoint GamePositionTypesEndPoint(string gameKey)
-        {
-            return new EndPoint
-            {
-                BaseUri = BaseApiUrl,
-                Resource = $"/game/{gameKey}/position_types"
-            };
-        }
-
-        public static EndPoint GameRosterPositionsEndPoint(string gameKey)
-        {
-            return new EndPoint
-            {
-                BaseUri = BaseApiUrl,
-                Resource = $"/game/{gameKey}/roster_positions"
-            };
-        }
-
-        public static EndPoint GamesEndPoint(string[] gameKeys, EndpointSubResourcesCollection subresources, bool? isAvailable, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public static EndPoint GamesEndPoint(string[] gameKeys, EndpointSubResourcesCollection subresources = null, GameCollectionFilters filters = null)
         {
             string games = "";
             if (gameKeys.Length > 0)
@@ -95,46 +59,14 @@ namespace YahooFantasyWrapper.Client
                 games = $";game_keys={ string.Join(",", gameKeys)}";
             }
 
-            string subs = "";
-            if (subresources.Resources.Count > 0)
-            {
-                subs = $";out={ string.Join(",", subresources.Resources.Select(a => a.ToFriendlyString()))}";
-
-            }
-
-            string available = "";
-            if (isAvailable != null)
-            {
-                available = $";is_available={(Convert.ToInt32(isAvailable.Value))}";
-            }
-
-            string years = "";
-            if (seasons != null && seasons.Length > 0)
-            {
-                years = $";seasons={string.Join(",", seasons)}";
-            }
-
-            string gameCodeString = "";
-            if (gameCodes != null && gameCodes.Length > 0)
-            {
-                gameCodeString = $";game_codes={string.Join(",", gameCodes.Select(a => Enum.GetName(typeof(GameCode), a)))}";
-            }
-
-            string gType = "";
-            if (gameTypes != null && gameTypes.Length > 0)
-            {
-                gType = $";game_types={ string.Join(",", gameTypes.Select(a => a.ToFriendlyString()))}";
-
-            }
-
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/games{games}{available}{years}{gameCodeString}{gType}{subs}"
+                Resource = $"/games{games}{BuildGameFiltersList(filters)}{BuildSubResourcesList(subresources)}"
             };
         }
 
-        public static EndPoint GamesUserEndPoint(string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public static EndPoint GamesUserEndPoint(string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, GameCollectionFilters filters = null)
         {
             string games = "";
             if (gameKeys != null && gameKeys.Length > 0)
@@ -142,47 +74,15 @@ namespace YahooFantasyWrapper.Client
                 games = $";game_keys={ string.Join(",", gameKeys)}";
             }
 
-            string subs = "";
-            if (subresources != null && subresources.Resources.Count > 0)
-            {
-                subs = $";out={ string.Join(",", subresources.Resources.Select(a => a.ToFriendlyString()))}";
-
-            }
-
-            string available = "";
-            if (isAvailable != null)
-            {
-                available = $";is_available={(Convert.ToInt32(isAvailable.Value))}";
-            }
-
-            string years = "";
-            if (seasons != null && seasons.Length > 0)
-            {
-                years = $";seasons={string.Join(",", seasons)}";
-            }
-
-            string gameCodeString = "";
-            if (gameCodes != null && gameCodes.Length > 0)
-            {
-                gameCodeString = $";game_codes={string.Join(",", gameCodes.Select(a => Enum.GetName(typeof(GameCode), a)))}";
-            }
-
-            string gType = "";
-            if (gameTypes != null && gameTypes.Length > 0)
-            {
-                gType = $";game_types={ string.Join(",", gameTypes.Select(a => a.ToFriendlyString()))}";
-
-            }
-
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/users{LoginString}/games{games}{available}{years}{gameCodeString}{gType}{subs}"
+                Resource = $"/users{LoginString}/games{games}{BuildGameFiltersList(filters)}{BuildSubResourcesList(subresources)}"
             };
         }
-        
-        
-        
+
+
+
         #endregion
 
         #region User
@@ -207,17 +107,10 @@ namespace YahooFantasyWrapper.Client
                 games = $";game_keys={ string.Join(",", gameKeys)}";
             }
 
-            string subs = "";
-            if (subresources != null && subresources.Resources.Count > 0)
-            {
-                subs = $";out={ string.Join(",", subresources.Resources.Select(a => a.ToFriendlyString()))}";
-
-            }
-
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/users{LoginString}/games{games}/leagues{subs}"
+                Resource = $"/users{LoginString}/games{games}/leagues{BuildSubResourcesList(subresources)}"
             };
         }
 
@@ -228,19 +121,41 @@ namespace YahooFantasyWrapper.Client
             {
                 games = $";game_keys={ string.Join(",", gameKeys)}";
             }
-            string subs = "";
-            if (subresources != null && subresources.Resources.Count > 0)
-            {
-                subs = $";out={ string.Join(",", subresources.Resources.Select(a => a.ToFriendlyString()))}";
-            }
+
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/users{LoginString}/games{games}/teams{subs}"
+                Resource = $"/users{LoginString}/games{games}/teams{BuildSubResourcesList(subresources)}"
             };
         }
 
         #endregion
+
+        #region League
+
+        public static EndPoint LeagueEndPoint(string leagueKey, EndpointSubResources resource)
+        {
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/league/{leagueKey}/{resource.ToFriendlyString()}"
+            };
+        }
+
+        public static EndPoint LeaguesEndPoint(string[] leagueKeys, EndpointSubResourcesCollection subresources = null)
+        {
+            string leagues = "";
+            if (leagueKeys.Length > 0)
+            {
+                leagues = $";league_keys={ string.Join(",", leagueKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/leagues{leagues}{BuildSubResourcesList(subresources)}"
+            };
+        }
 
         public static EndPoint LeagueTeamsEndPoint(string[] leagueKeys, EndpointSubResourcesCollection subresources)
         {
@@ -250,21 +165,93 @@ namespace YahooFantasyWrapper.Client
                 leagues = $";league_keys={ string.Join(",", leagueKeys)}";
             }
 
-            string subs = "";
-            if (subresources.Resources.Count > 0)
-            {
-                subs = $";out={ string.Join(",", subresources.Resources.Select(a => a.ToFriendlyString()))}";
-
-            }
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/leagues{leagues}/teams{subs}"
+                Resource = $"/leagues{leagues}/teams{BuildSubResourcesList(subresources)}"
+            };
+
+        }
+        #endregion
+
+        #region Player
+
+        public static EndPoint PlayerOwnershipEndPoint(string[] playerKeys, string leagueKey)
+        {
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/league/{leagueKey}/players;player_keys={string.Join(",", playerKeys)}/ownership"
+            };
+        }
+
+        public static EndPoint PlayerEndPoint(string playerKey, EndpointSubResources resource)
+        {
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/player/{playerKey}/{resource.ToFriendlyString()}"
+            };
+        }
+
+        public static EndPoint PlayersEndPoint(string[] playerKeys, EndpointSubResourcesCollection subresources = null)
+        {
+            string players = "";
+            if (playerKeys.Length > 0)
+            {
+                players = $";player_keys={ string.Join(",", playerKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/player{players}{BuildSubResourcesList(subresources)}"
+            };
+        }
+
+        public static EndPoint PlayersLeagueEndPoint(string[] leagueKeys, EndpointSubResourcesCollection subresources = null, PlayerCollectionFilters filters = null)
+        {
+            string leagues = "";
+            if (leagueKeys.Length > 0)
+            {
+                leagues = $";league_keys={ string.Join(",", leagueKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/leagues{leagues}/players{BuildSubResourcesList(subresources)}{BuildPlayersFiltersList(filters)}"
+            };
+        }
+
+        public static EndPoint PlayersTeamEndPoint(string[] teamKeys, EndpointSubResourcesCollection subresources = null, PlayerCollectionFilters filters = null)
+        {
+            string teams = "";
+            if (teamKeys.Length > 0)
+            {
+                teams = $";team_keys={ string.Join(",", teamKeys)}";
+            }
+
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/teams{teams}/players{BuildSubResourcesList(subresources)}{BuildPlayersFiltersList(filters)}"
+            };
+        }
+        #endregion
+
+        #region Roster
+        public static EndPoint RosterEndPoint(string teamKey, int? week = null, DateTime? date = null)
+        {
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/team{teamKey}/roster{BuildWeekList(new int?[] { week })}{BuildDate(date)}"
             };
 
         }
 
-
+        #endregion
 
         #region Transaction
 
@@ -278,5 +265,72 @@ namespace YahooFantasyWrapper.Client
         }
 
         #endregion
+
+        private static string BuildSubResourcesList(EndpointSubResourcesCollection subresources)
+        {
+            string subs = "";
+            if (subresources != null && subresources.Resources.Count > 0)
+            {
+                subs = $";out={ string.Join(",", subresources.Resources.Select(a => a.ToFriendlyString()))}";
+
+            }
+            return subs;
+        }
+
+        private static string BuildGameFiltersList(GameCollectionFilters filters)
+        {
+            string available = "";
+            if (filters.IsAvailable != null)
+            {
+                available = $";is_available={(Convert.ToInt32(filters.IsAvailable.Value))}";
+            }
+
+            string years = "";
+            if (filters.Seasons != null && filters.Seasons.Length > 0)
+            {
+                years = $";seasons={string.Join(",", filters.Seasons)}";
+            }
+
+            string gameCodeString = "";
+            if (filters.GameCodes != null && filters.GameCodes.Length > 0)
+            {
+                gameCodeString = $";game_codes={string.Join(",", filters.GameCodes.Select(a => Enum.GetName(typeof(GameCode), a)))}";
+            }
+
+            string gType = "";
+            if (filters.GameTypes != null && filters.GameTypes.Length > 0)
+            {
+                gType = $";game_types={ string.Join(",", filters.GameTypes.Select(a => a.ToFriendlyString()))}";
+
+            }
+            return $"{available}{years}{gameCodeString}{gType}";
+        }
+
+        private static string BuildPlayersFiltersList(PlayerCollectionFilters filters)
+        {
+
+            return $"";
+        }
+
+        private static string BuildWeekList(int?[] weeks)
+        {
+            string weekString = "";
+            if (weeks != null && weeks.Length > 0)
+            {
+                weekString = $";week={ string.Join(",", weeks.Select(a => a.ToString()))}";
+            }
+            return $"{weekString}";
+        }
+
+        private static string BuildDate(DateTime? date)
+        {
+            string dt = "";
+            if (date != null)
+            {
+                dt = $";date={ date.Value.ToString("yyyy-M-dd") }";
+            }
+
+            return dt;
+        }
     }
 }

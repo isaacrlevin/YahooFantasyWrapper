@@ -12,19 +12,19 @@ namespace YahooFantasyWrapper.Client
 {
     public class TeamsCollectionManager
     {
-        public async Task<List<Team>> GetTeams(string[] gameKeys, EndpointSubResourcesCollection subresources, string AccessToken, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Team>> GetTeams(string[] gameKeys, EndpointSubResourcesCollection subresources, string AccessToken)
         {
             throw new NotImplementedException();
             //return await Utils.GetCollection<Team>(ApiEndpoints.GamesEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
         }
 
-        public async Task<List<Team>> GetLeagueTeams(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Team>> GetLeagueTeams(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null)
         {
             throw new NotImplementedException();
             //return await Utils.GetCollection<Team>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
         }
 
-        public async Task<List<Team>> GetUserGamesTeams(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Team>> GetUserGamesTeams(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null)
         {
             throw new NotImplementedException();
             //return await Utils.GetCollection<Team>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");

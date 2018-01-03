@@ -12,10 +12,9 @@ namespace YahooFantasyWrapper.Client
 {
     public class LeaguesCollectionManager
     {
-        public async Task<List<League>> GetLeagues(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<League>> GetLeagues(string AccessToken, string[] leagueKeys = null, EndpointSubResourcesCollection subresources = null)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetCollection<Game>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
+            return await Utils.GetCollection<League>(ApiEndpoints.LeaguesEndPoint(leagueKeys, subresources), AccessToken, "game");
         }
     }
 }

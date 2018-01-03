@@ -12,22 +12,19 @@ namespace YahooFantasyWrapper.Client
 {
     public class PlayersCollectionManager
     {
-        public async Task<List<Player>> GetPlayers(string[] gameKeys, EndpointSubResourcesCollection subresources, string AccessToken, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Player>> GetPlayers(string[] playerKeys, EndpointSubResourcesCollection subresources, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetCollection<Player>(ApiEndpoints.GamesEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
+            return await Utils.GetCollection<Player>(ApiEndpoints.PlayersEndPoint(playerKeys, subresources), AccessToken, "game");
         }
 
-        public async Task<List<Player>> GetLeaguePlayers(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Player>> GetLeaguePlayers(string[] leagueKeys, string AccessToken, EndpointSubResourcesCollection subresources = null)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetCollection<Player>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
+            return await Utils.GetCollection<Player>(ApiEndpoints.PlayersLeagueEndPoint(leagueKeys, subresources), AccessToken, "game");
         }
 
-        public async Task<List<Player>> GetTeamPlayers(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Player>> GetTeamPlayers(string AccessToken, string[] teamKeys = null, EndpointSubResourcesCollection subresources = null)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetCollection<Player>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
+           return await Utils.GetCollection<Player>(ApiEndpoints.PlayersTeamEndPoint(teamKeys, subresources), AccessToken, "game");
         }
     }
 }

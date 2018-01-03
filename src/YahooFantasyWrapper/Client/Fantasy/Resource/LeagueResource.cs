@@ -9,7 +9,7 @@ using YahooFantasyWrapper.Infrastructure;
 using YahooFantasyWrapper.Models;
 namespace YahooFantasyWrapper.Client
 {
-   public class LeagueResourceManager
+    public class LeagueResourceManager
     {
         /// <summary>
         /// Get Leagues Meta
@@ -18,46 +18,39 @@ namespace YahooFantasyWrapper.Client
         /// <param name="gameKey">List of LeagueKey to Query</param>
         /// <param name="AccessToken">Access Token from Auth Api</param>
         /// <returns>List of Leagues</returns>
-        public async Task<League> GetMeta(string gameKey, string AccessToken)
+        public async Task<League> GetMeta(string leagueKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<League>(ApiEndpoints.LeagueMetaDataEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.MetaData), AccessToken, "league");
         }
 
-        public async Task<League> GetSettings(string gameKey, string[] leagueKeys, string AccessToken)
+        public async Task<League> GetSettings(string leagueKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<League>(ApiEndpoints.LeagueLeaguesEndPoint(gameKey, leagueKeys), AccessToken, "game");
+            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.Settings), AccessToken, "league");
         }
 
-        public async Task<League> GetStandings(string gameKey, string[] playerKeys, string AccessToken)
+        public async Task<League> GetStandings(string leagueKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<League>(ApiEndpoints.LeaguePlayersEndPoint(gameKey, playerKeys), AccessToken, "game");
+            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.Standings), AccessToken, "league");
         }
 
-        public async Task<League> GetScoreboard(string gameKey, string AccessToken)
+        public async Task<League> GetScoreboard(string leagueKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<League>(ApiEndpoints.LeagueLeagueWeeksEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.Scoreboard), AccessToken, "league");
         }
 
-        public async Task<League> GetTeams(string gameKey, string AccessToken)
+        public async Task<League> GetTeams(string leagueKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<League>(ApiEndpoints.LeagueStatCategoriesEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.Teams), AccessToken, "league");
         }
 
-        public async Task<League> GetDraftResults(string gameKey, string AccessToken)
+        public async Task<League> GetDraftResults(string leagueKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<League>(ApiEndpoints.LeaguePositionTypesEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.DraftResults), AccessToken, "league");
         }
 
-        public async Task<League> GetTransactions(string gameKey, string AccessToken)
+        public async Task<League> GetTransactions(string leagueKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<League>(ApiEndpoints.LeagueRosterPositionsEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.Transactions), AccessToken, "league");
         }
     }
 }

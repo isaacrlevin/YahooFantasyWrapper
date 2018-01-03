@@ -21,7 +21,7 @@ namespace YahooFantasyWrapper.Client
         /// <returns>List of Games</returns>
         public async Task<Game> GetMeta(string gameKey, string AccessToken)
         {
-            return await Utils.GetResource<Game>(ApiEndpoints.GameMetaDataEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Game>(ApiEndpoints.GameEndPoint(gameKey, EndpointSubResources.MetaData), AccessToken, "game");
         }
 
         public async Task<Game> GetLeagues(string gameKey, string[] leagueKeys, string AccessToken)
@@ -36,22 +36,22 @@ namespace YahooFantasyWrapper.Client
 
         public async Task<Game> GetGameWeeks(string gameKey, string AccessToken)
         {
-            return await Utils.GetResource<Game>(ApiEndpoints.GameGameWeeksEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Game>(ApiEndpoints.GameEndPoint(gameKey, EndpointSubResources.GameWeeks), AccessToken, "game");
         }
 
         public async Task<Game> GetStatCategories(string gameKey, string AccessToken)
         {
-            return await Utils.GetResource<Game>(ApiEndpoints.GameStatCategoriesEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Game>(ApiEndpoints.GameEndPoint(gameKey, EndpointSubResources.StatCategories), AccessToken, "game");
         }
 
         public async Task<Game> GetPositionTypes(string gameKey, string AccessToken)
         {
-            return await Utils.GetResource<Game>(ApiEndpoints.GamePositionTypesEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Game>(ApiEndpoints.GameEndPoint(gameKey, EndpointSubResources.PositionTypes), AccessToken, "game");
         }
 
         public async Task<Game> GetRosterPositions(string gameKey, string AccessToken)
         {
-            return await Utils.GetResource<Game>(ApiEndpoints.GameRosterPositionsEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Game>(ApiEndpoints.GameEndPoint(gameKey, EndpointSubResources.RosterPositions), AccessToken, "game");
         }
     }
 }

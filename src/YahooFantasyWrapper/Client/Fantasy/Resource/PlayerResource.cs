@@ -13,39 +13,34 @@ namespace YahooFantasyWrapper.Client
     {
         /// <summary>
         /// Get Leagues Meta
-        /// https://fantasysports.yahooapis.com/fantasy/v2/game/{gameKey}/metadata
+        /// https://fantasysports.yahooapis.com/fantasy/v2/game/{playerKey}/metadata
         /// </summary>
-        /// <param name="gameKey">List of LeagueKey to Query</param>
+        /// <param name="playerKey">List of LeagueKey to Query</param>
         /// <param name="AccessToken">Access Token from Auth Api</param>
         /// <returns>List of Leagues</returns>
-        public async Task<League> GetMeta(string gameKey, string AccessToken)
+        public async Task<Player> GetMeta(string playerKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueMetaDataEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Player>(ApiEndpoints.PlayerEndPoint(playerKey, EndpointSubResources.MetaData), AccessToken, "game");
         }
 
-        public async Task<League> GetStats(string gameKey, string[] leagueKeys, string AccessToken)
+        public async Task<Player> GetStats(string playerKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueLeaguesEndPoint(gameKey, leagueKeys), AccessToken, "game");
+            return await Utils.GetResource<Player>(ApiEndpoints.PlayerEndPoint(playerKey, EndpointSubResources.Stats), AccessToken, "game");
         }
 
-        public async Task<League> GetOwnership(string gameKey, string[] playerKeys, string AccessToken)
+        public async Task<Player> GetOwnership(string[] playerKeys, string leagueKeys, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeaguePlayersEndPoint(gameKey, playerKeys), AccessToken, "game");
+            return await Utils.GetResource<Player>(ApiEndpoints.PlayerOwnershipEndPoint(playerKeys, leagueKeys), AccessToken, "game");
         }
 
-        public async Task<League> GetPercentOwned(string gameKey, string AccessToken)
+        public async Task<Player> GetPercentOwned(string playerKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueLeagueWeeksEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Player>(ApiEndpoints.PlayerEndPoint(playerKey, EndpointSubResources.PercentOwned), AccessToken, "game");
         }
 
-        public async Task<League> GetDraftAnalysis(string gameKey, string AccessToken)
+        public async Task<Player> GetDraftAnalysis(string playerKey, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueStatCategoriesEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Player>(ApiEndpoints.PlayerEndPoint(playerKey, EndpointSubResources.DraftAnalysis), AccessToken, "game");
         }
     }
 }

@@ -11,10 +11,9 @@ namespace YahooFantasyWrapper.Client
 {
     public class RosterResourceManager
     {
-        public async Task<Roster> GetPlayers(string gameKey, string AccessToken)
+        public async Task<Roster> GetPlayers(string teamKey, int? week, DateTime? date, string AccessToken)
         {
-            throw new NotImplementedException();
-            //return await Utils.GetResource<Player>(ApiEndpoints.LeagueMetaDataEndPoint(gameKey), AccessToken, "game");
+            return await Utils.GetResource<Roster>(ApiEndpoints.RosterEndPoint(teamKey, week, date), AccessToken, "roster");
         }
     }
 }

@@ -12,19 +12,19 @@ namespace YahooFantasyWrapper.Client
 {
    public class TransactionsCollectionManager
     {
-        public async Task<List<Transaction>> AddPlayer(string[] gameKeys, EndpointSubResourcesCollection subresources, string AccessToken, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Transaction>> AddPlayer(string[] gameKeys, EndpointSubResourcesCollection subresources, string AccessToken)
         {
             throw new NotImplementedException();
             //return await Utils.GetCollection<Team>(ApiEndpoints.GamesEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
         }
 
-        public async Task<List<Transaction>> DropPlayer(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Transaction>> DropPlayer(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null)
         {
             throw new NotImplementedException();
             //return await Utils.GetCollection<Team>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
         }
 
-        public async Task<List<Transaction>> AddDropPlayer(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Transaction>> AddDropPlayer(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null)
         {
             throw new NotImplementedException();
             //return await Utils.GetCollection<Team>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");

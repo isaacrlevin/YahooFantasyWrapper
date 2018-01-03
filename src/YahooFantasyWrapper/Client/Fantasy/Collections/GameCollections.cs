@@ -12,14 +12,14 @@ namespace YahooFantasyWrapper.Client
 {
     public class GameCollectionsManager
     {
-        public async Task<List<Game>> GetGames(string[] gameKeys, EndpointSubResourcesCollection subresources, string AccessToken, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Game>> GetGames(string[] gameKeys, EndpointSubResourcesCollection subresources, string AccessToken, GameCollectionFilters filters = null)
         {
-            return await Utils.GetCollection<Game>(ApiEndpoints.GamesEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
+            return await Utils.GetCollection<Game>(ApiEndpoints.GamesEndPoint(gameKeys, subresources, filters), AccessToken, "game");
         }
 
-        public async Task<List<Game>> GetGamesUsers(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, bool? isAvailable = null, int[] seasons = null, GameCode[] gameCodes = null, GameType[] gameTypes = null)
+        public async Task<List<Game>> GetGamesUsers(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null, GameCollectionFilters filters = null)
         {
-            return await Utils.GetCollection<Game>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, isAvailable, seasons, gameCodes, gameTypes), AccessToken, "game");
+            return await Utils.GetCollection<Game>(ApiEndpoints.GamesUserEndPoint(gameKeys, subresources, filters), AccessToken, "game");
         }
     }
 }

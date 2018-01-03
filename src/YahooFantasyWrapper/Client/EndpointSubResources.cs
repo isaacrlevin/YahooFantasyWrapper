@@ -117,5 +117,10 @@ namespace YahooFantasyWrapper.Client
             }
 
         }
+
+        public static bool IsNotEmpty(this EndpointSubResourcesCollection subresources)
+        {
+            return subresources != null && subresources.Resources.Count > 0;
+        }
     }
 }
