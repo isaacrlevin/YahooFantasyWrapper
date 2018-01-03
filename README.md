@@ -1,5 +1,5 @@
 # YahooFantasyWrapper
-## This Repo is a WIP
+
 Wrapper for the Yahoo Fantasy Sports API. Includes Authorization and Data Retrieval. Written in C# Targeting Dot Net Standard 2.0
 
 
@@ -9,7 +9,7 @@ Wrapper for the Yahoo Fantasy Sports API. Includes Authorization and Data Retrie
 - git clone
 - Reference project in solution
 
-> Per [Microsoft](https://docs.microsoft.com/dotnet/standard/net-standard), Dot Net Standard 2.0 supports development in Dot Net Core 2.0, > .Net Framework 4.6.1, Mono 5.4, UWP vNext, and various versions of Xamarin. 
+> Per [Microsoft](https://docs.microsoft.com/dotnet/standard/net-standard), Dot Net Standard 2.0 supports development in Dot Net Core 2.0, .Net Framework 4.6.1, Mono 5.4, UWP vNext, and various versions of Xamarin. 
 
 ### Getting Api Access from Yahoo
 - Direct to [Yahoo Apps Page](https://developer.yahoo.com/apps/)
