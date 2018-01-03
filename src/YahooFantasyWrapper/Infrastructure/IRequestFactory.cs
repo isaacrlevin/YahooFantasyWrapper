@@ -22,7 +22,7 @@ namespace YahooFantasyWrapper.Infrastructure
         HttpRequestMessage CreateRequest();
     }
 
-    public class RequestFactory: IRequestFactory
+    internal class RequestFactory: IRequestFactory
     {
         /// <summary>
         /// Returns new REST client instance.

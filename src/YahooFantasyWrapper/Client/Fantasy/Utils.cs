@@ -37,6 +37,14 @@ namespace YahooFantasyWrapper.Client
             return XDocument.Parse(result);
         }
 
+        /// <summary>
+        /// Generic Handler to Retrieve Collection for Api
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="endPoint">EndPoint requested</param>
+        /// <param name="AccessToken"></param>
+        /// <param name="lookup">Collection Type to Retrieve</param>
+        /// <returns></returns>
         internal static async Task<List<T>> GetCollection<T>(EndPoint endPoint, string AccessToken, string lookup)
         {
             var xml = await Utils.GetResponseData(endPoint, AccessToken);
@@ -51,6 +59,14 @@ namespace YahooFantasyWrapper.Client
             return collection;
         }
 
+        /// <summary>
+        /// Generic Handler to Retrieve Resource for Api
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="endPoint">EndPoint requested</param>
+        /// <param name="AccessToken"></param>
+        /// <param name="lookup">Resource Type to Retrieve</param>
+        /// <returns></returns>
         internal static async Task<T> GetResource<T>(EndPoint endPoint, string AccessToken, string lookup)
         {
             var xml = await Utils.GetResponseData(endPoint, AccessToken);

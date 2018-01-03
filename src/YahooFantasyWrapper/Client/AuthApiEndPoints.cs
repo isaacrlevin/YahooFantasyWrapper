@@ -4,13 +4,13 @@ using System.Text;
 
 namespace YahooFantasyWrapper.Client
 {
-    public static class AuthApiEndPoints
+    internal static class AuthApiEndPoints
     {
         #region OAuth
         /// <summary>
         /// The request authorization endpoint
         /// </summary>
-        public static EndPoint AccessCodeServiceEndpoint
+        internal static EndPoint AccessCodeServiceEndpoint
         {
             get
             {
@@ -25,7 +25,7 @@ namespace YahooFantasyWrapper.Client
         /// <summary>
         /// The acess token service endpoint
         /// </summary>
-        public static EndPoint AccessTokenServiceEndpoint
+        internal static EndPoint AccessTokenServiceEndpoint
         {
             get
             {
@@ -40,7 +40,7 @@ namespace YahooFantasyWrapper.Client
         /// <summary>
         /// Defines URI of service which allows to obtain information about user which is currently logged in.
         /// </summary>
-        public static EndPoint UserInfoServiceEndpoint
+        internal static EndPoint UserInfoServiceEndpoint
         {
             get
             {

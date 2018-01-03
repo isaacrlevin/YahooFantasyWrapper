@@ -51,7 +51,6 @@ namespace YahooFantasyWrapper.Client
             }
         }
 
-
         public LeaguesCollectionManager LeaguesCollectionManager
         {
             get
@@ -59,7 +58,6 @@ namespace YahooFantasyWrapper.Client
                 return new LeaguesCollectionManager();
             }
         }
-
 
         public PlayerResourceManager PlayerResourceManager
         {
@@ -69,7 +67,6 @@ namespace YahooFantasyWrapper.Client
             }
         }
 
-
         public PlayersCollectionManager PlayersCollectionManager
         {
             get
@@ -77,7 +74,6 @@ namespace YahooFantasyWrapper.Client
                 return new PlayersCollectionManager();
             }
         }
-
 
         public RosterResourceManager RosterResourceManager
         {
@@ -87,7 +83,6 @@ namespace YahooFantasyWrapper.Client
             }
         }
 
-
         public TeamResourceManager TeamResourceManager
         {
             get
@@ -95,7 +90,6 @@ namespace YahooFantasyWrapper.Client
                 return new TeamResourceManager();
             }
         }
-
 
         public TeamsCollectionManager TeamsCollectionManager
         {
@@ -105,7 +99,6 @@ namespace YahooFantasyWrapper.Client
             }
         }
 
-
         public TransactionResourceManager TransactionResourceManager
         {
             get
@@ -113,7 +106,6 @@ namespace YahooFantasyWrapper.Client
                 return new TransactionResourceManager();
             }
         }
-
 
         public TransactionsCollectionManager TransactionsCollectionManager
         {

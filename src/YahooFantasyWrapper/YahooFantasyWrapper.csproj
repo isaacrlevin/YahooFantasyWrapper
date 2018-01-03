@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>YahooFantasyWrapper</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Isaac Levin</Authors>
+    <Description>Wrapper for Yahoo! Fantasy Sports Api</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <Copyright>Copyright Isaac Levin. All rights reserved.</Copyright>
+    <PackageTags>yahoo fantasy sports</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

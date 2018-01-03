@@ -5,6 +5,9 @@ using YahooFantasyWrapper.Models;
 
 namespace YahooFantasyWrapper.Client
 {
+    /// <summary>
+    /// Filter Object for Game Collection
+    /// </summary>
     public class GameCollectionFilters
     {
         public bool? IsAvailable { get; set; }
@@ -13,6 +16,9 @@ namespace YahooFantasyWrapper.Client
         public GameType[] GameTypes { get; set; }
     }
 
+    /// <summary>
+    /// Filter Object for Player Collection
+    /// </summary>
     public class PlayerCollectionFilters
     {
         public string[] Positions { get; set; }

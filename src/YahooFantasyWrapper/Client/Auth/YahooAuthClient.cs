@@ -195,7 +195,7 @@ namespace YahooFantasyWrapper.Client
             }
         }
         /// <summary>
-        /// 
+        /// Gets Current Token from request
         /// </summary>
         /// <param name="refreshToken">refresh token used for generation of new access token </param>
         /// <param name="forceUpdate">flag to force generation of new access token</param>
@@ -248,6 +248,12 @@ namespace YahooFantasyWrapper.Client
             return AddQueryString(request.RequestUri.ToString(), body.ToDictionary(x => x.Key, x => x.Value));
         }
 
+        /// <summary>
+        /// Helper Method to Convert QS Params into stirng
+        /// </summary>
+        /// <param name="uri">Uri to add params to</param>
+        /// <param name="queryString">KVPairs that represent QS params</param>
+        /// <returns></returns>
         private static string AddQueryString(
           string uri,
           IEnumerable<KeyValuePair<string, string>> queryString)

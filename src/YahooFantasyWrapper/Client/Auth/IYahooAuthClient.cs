@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Text;
 using System.Threading.Tasks;
 using YahooFantasyWrapper.Configuration;
 using YahooFantasyWrapper.Models;

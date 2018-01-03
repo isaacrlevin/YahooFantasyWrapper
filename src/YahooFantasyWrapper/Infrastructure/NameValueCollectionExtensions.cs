@@ -6,7 +6,7 @@ using YahooFantasyWrapper.Client;
 
 namespace YahooFantasyWrapper.Infrastructure
 {
-    public static class NameValueCollectionExtensions
+    internal static class NameValueCollectionExtensions
     {
         /// <summary>
         /// Check to make sure QS Parameters have been passed, otherwise Exception
@@ -14,7 +14,7 @@ namespace YahooFantasyWrapper.Infrastructure
         /// <param name="collection">QS to Parse</param>
         /// <param name="key">Key for QS Param</param>
         /// <returns></returns>
-        public static string GetOrThrowUnexpectedResponse(this NameValueCollection collection, string key)
+        internal static string GetOrThrowUnexpectedResponse(this NameValueCollection collection, string key)
         {
             var value = collection[key];
             if (string.IsNullOrWhiteSpace(value))

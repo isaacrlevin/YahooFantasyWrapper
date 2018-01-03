@@ -12,26 +12,26 @@ namespace YahooFantasyWrapper.Client
         /// <summary>
         /// Client instance.
         /// </summary>
-        public HttpClient Client { get; set; }
+        internal HttpClient Client { get; set; }
 
         /// <summary>
         /// Request instance.
         /// </summary>
-        public HttpRequestMessage Request { get; set; }
+        internal HttpRequestMessage Request { get; set; }
 
         /// <summary>
         /// Response instance.
         /// </summary>
-        public string Response { get; set; }
+        internal string Response { get; set; }
 
         /// <summary>
         /// Values received from service.
         /// </summary>
-        public NameValueCollection Parameters { get; set; }
+        internal NameValueCollection Parameters { get; set; }
 
         /// <summary>
         /// Client configuration.
         /// </summary>
-        public YahooConfiguration Configuration { get; set; }
+        internal YahooConfiguration Configuration { get; set; }
     }
 }
