@@ -89,10 +89,10 @@ namespace YahooFantasyWrapper.Models
     }
 
     [XmlRoot(ElementName = "players", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-    public class Players
+    public class PlayerList
     {
         [XmlElement(ElementName = "player", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public List<Player> Player { get; set; }
+        public List<Player> Players { get; set; }
         [XmlAttribute(AttributeName = "count")]
         public string Count { get; set; }
     }

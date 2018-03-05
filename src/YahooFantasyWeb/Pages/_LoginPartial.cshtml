@@ -1,0 +1,39 @@
+﻿
+
+
+<form method="post" class="navbar-right">
+    @if (TempData["auth"] != null)
+    {
+        ViewModel model = (ViewModel)TempData["auth"];
+
+        var nickname = model.Profile.Nickname;
+        var url = model.Profile.Image.ImageUrl;
+
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="user clearfix dropdown-toggle" href="#" data-toggle="dropdown">
+                    <div class="name">
+                        @nickname
+                    </div>
+                    <div class="avatar">
+                        <img src="@url" />
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <button type="submit" class="clean-button" asp-page-handler="Logout" value="Logout">Log Out</button>
+                        @*<link-button asp-page-handler="Logout" >Log Out</link-button>*@
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <button type="submit" class="btn login-btn" asp-page-handler="Login" value="Login">Log In with Yahoo!</button>
+            </li>
+        </ul>
+    }
+</form>

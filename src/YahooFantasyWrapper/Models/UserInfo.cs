@@ -5,12 +5,13 @@ using System.Text;
 
 namespace YahooFantasyWrapper.Models
 {
+    [Serializable]
     public class UserInfo
     {
         [JsonProperty("profile")]
         public Profile Profile { get; set; }
     }
-
+    [Serializable]
     public class Profile
     {
         [JsonProperty("nickname")]
@@ -58,7 +59,7 @@ namespace YahooFantasyWrapper.Models
         [JsonProperty("uri")]
         public string Uri { get; set; }
     }
-
+    [Serializable]
     public class Image
     {
         [JsonProperty("imageUrl")]

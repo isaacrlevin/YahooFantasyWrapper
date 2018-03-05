@@ -22,6 +22,6 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "faab_bid")]
         public string FaabBid { get; set; }
         [XmlElement(ElementName = "players")]
-        public Players Players { get; set; }
+        public PlayerList PlayerList { get; set; }
     }
 }

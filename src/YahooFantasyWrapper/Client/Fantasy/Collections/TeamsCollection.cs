@@ -34,9 +34,9 @@ namespace YahooFantasyWrapper.Client
         /// <param name="subresources">SubResources to include with Team Resource</param>
         /// <param name="AccessToken">Token for request</param>
         /// <returns>Team Collection (List of Team Resources)</returns>
-        public async Task<List<Team>> GetLeagueTeams(string AccessToken, string[] leagueKeys = null, EndpointSubResourcesCollection subresources = null)
+        public async Task<List<League>> GetLeagueTeams(string AccessToken, string[] leagueKeys = null, EndpointSubResourcesCollection subresources = null)
         {
-            return await Utils.GetCollection<Team>(ApiEndpoints.TeamsLeagueEndPoint(leagueKeys, subresources), AccessToken, "team");
+            return await Utils.GetCollection<League>(ApiEndpoints.TeamsLeagueEndPoint(leagueKeys, subresources), AccessToken, "league");
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace YahooFantasyWrapper.Client
         /// <param name="subresources">SubResources to include with Team Resource</param>
         /// <param name="AccessToken">Token for request</param>
         /// <returns>Team Collection (List of Team Resources)</returns>
-        public async Task<List<Team>> GetUserGamesTeams(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null)
+        public async Task<List<Game>> GetUserGamesTeams(string AccessToken, string[] gameKeys = null, EndpointSubResourcesCollection subresources = null)
         {
-            return await Utils.GetCollection<Team>(ApiEndpoints.TeamsUserGamesEndPoint(gameKeys, subresources), AccessToken, "team");
+            return await Utils.GetCollection<Game>(ApiEndpoints.TeamsUserGamesEndPoint(gameKeys, subresources), AccessToken, "game");
         }
     }
 }

@@ -17,10 +17,10 @@ namespace YahooFantasyWrapper.Models
     }
 
     [XmlRoot(ElementName = "game_weeks", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-    public class GameWeeks
+    public class GameWeekList
     {
         [XmlElement(ElementName = "game_week", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public List<GameWeek> GameWeek { get; set; }
+        public List<GameWeek> GameWeeks { get; set; }
         [XmlAttribute(AttributeName = "count")]
         public string Count { get; set; }
     }
@@ -46,10 +46,10 @@ namespace YahooFantasyWrapper.Models
     }
 
     [XmlRoot(ElementName = "managers", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-    public class Managers
+    public class ManagerList
     {
         [XmlElement(ElementName = "manager", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Manager Manager { get; set; }
+        public List<Manager> Managers { get; set; }
     }
 
     [XmlRoot(ElementName = "game", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
@@ -76,11 +76,11 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "is_offseason", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string IsOffseason { get; set; }
         [XmlElement(ElementName = "game_weeks", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public GameWeeks GameWeeks { get; set; }
+        public GameWeekList GameWeeks { get; set; }
         [XmlElement(ElementName = "leagues", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Leagues Leagues { get; set; }
+        public LeagueList LeagueList { get; set; }
         [XmlElement(ElementName = "players", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Players Players { get; set; }
+        public PlayerList PlayerList { get; set; }
         [XmlElement(ElementName = "stat_categories", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public StatCategories StatCategories { get; set; }
         [XmlElement(ElementName = "position_types", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
@@ -88,14 +88,14 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "roster_positions", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public RosterPositions RosterPositions { get; set; }
         [XmlElement(ElementName = "teams", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Teams Teams { get; set; }
+        public TeamList TeamList { get; set; }
     }
 
     [XmlRoot(ElementName = "games", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-    public class Games
+    public class GameList
     {
         [XmlElement(ElementName = "game", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Game Game { get; set; }
+        public List<Game> Games { get; set; }
         [XmlAttribute(AttributeName = "count")]
         public string Count { get; set; }
     }
@@ -106,14 +106,14 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "guid", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string Guid { get; set; }
         [XmlElement(ElementName = "games", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Games Games { get; set; }
+        public GameList GameList { get; set; }
     }
 
     [XmlRoot(ElementName = "users", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-    public class Users
+    public class UserList
     {
         [XmlElement(ElementName = "user", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public User User { get; set; }
+        public List<User> Users { get; set; }
         [XmlAttribute(AttributeName = "count")]
         public string Count { get; set; }
     }
@@ -122,7 +122,7 @@ namespace YahooFantasyWrapper.Models
     public class FantasyContent
     {
         [XmlElement(ElementName = "users", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Users Users { get; set; }
+        public UserList Users { get; set; }
         [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         public string Lang { get; set; }
         [XmlAttribute(AttributeName = "uri", Namespace = "http://www.yahooapis.com/v1/base.rng")]

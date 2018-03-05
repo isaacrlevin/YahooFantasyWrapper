@@ -70,17 +70,17 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "draft_recap_url")]
         public string DraftRecapUrl { get; set; }
         [XmlElement(ElementName = "managers")]
-        public Managers Managers { get; set; }
+        public ManagerList ManagerList { get; set; }
 
         [XmlElement(ElementName = "roster")]
         public Roster Roster { get; set; }
     }
 
     [XmlRoot(ElementName = "teams")]
-    public class Teams
+    public class TeamList
     {
         [XmlElement(ElementName = "team")]
-        public List<Team> Team { get; set; }
+        public List<Team> Teams { get; set; }
         [XmlAttribute(AttributeName = "count")]
         public string Count { get; set; }
     }
@@ -96,6 +96,6 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "is_editable", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string IsEditable { get; set; }
         [XmlElement(ElementName = "players", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Players Players { get; set; }
+        public PlayerList PlayerList { get; set; }
     }
 }

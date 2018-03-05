@@ -60,19 +60,19 @@ namespace YahooFantasyWrapper.Models
         public string Season { get; set; }
 
         [XmlElement(ElementName = "players", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Players Players { get; set; }
+        public PlayerList PlayerList { get; set; }
 
         [XmlElement(ElementName = "teams", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public Teams Teams { get; set; }
+        public TeamList TeamList { get; set; }
         [XmlElement(ElementName = "settings", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public Settings Settings { get; set; }
     }
 
     [XmlRoot(ElementName = "leagues", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-    public class Leagues
+    public class LeagueList
     {
         [XmlElement(ElementName = "league", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public League League { get; set; }
+        public List<League> Leagues { get; set; }
         [XmlAttribute(AttributeName = "count")]
         public string Count { get; set; }
     }

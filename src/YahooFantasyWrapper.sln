@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YahooFantasyWrapper", "YahooFantasyWrapper\YahooFantasyWrapper.csproj", "{2C81B49A-3C4C-4D30-84A7-9B683E88D5EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWebProject", "TestWebProject\TestWebProject.csproj", "{BE547E3E-4C74-4838-82EF-F6BB17B926D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YahooFantasyWeb", "YahooFantasyWeb\YahooFantasyWeb.csproj", "{4CE716ED-6D97-44E0-8CC1-7125ECC29B38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{2C81B49A-3C4C-4D30-84A7-9B683E88D5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C81B49A-3C4C-4D30-84A7-9B683E88D5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C81B49A-3C4C-4D30-84A7-9B683E88D5EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE547E3E-4C74-4838-82EF-F6BB17B926D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE547E3E-4C74-4838-82EF-F6BB17B926D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE547E3E-4C74-4838-82EF-F6BB17B926D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE547E3E-4C74-4838-82EF-F6BB17B926D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE716ED-6D97-44E0-8CC1-7125ECC29B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE716ED-6D97-44E0-8CC1-7125ECC29B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE716ED-6D97-44E0-8CC1-7125ECC29B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE716ED-6D97-44E0-8CC1-7125ECC29B38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

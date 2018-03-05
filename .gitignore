@@ -12,3 +12,5 @@
 /src/YahooFantasyWrapper/packages
 /src/YahooFantasyWrapper/bin/Release
 /src/.vs/config
+/src/YahooFantasyWeb/bin
+/src/YahooFantasyWeb/obj
