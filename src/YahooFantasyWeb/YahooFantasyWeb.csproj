@@ -13,4 +13,16 @@
   <ItemGroup>
     <ProjectReference Include="..\YahooFantasyWrapper\YahooFantasyWrapper.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Collection\Leagues\" />
+    <Folder Include="Pages\Collection\Transactions\" />
+    <Folder Include="Pages\Collection\Teams\" />
+    <Folder Include="Pages\Collection\Players\" />
+    <Folder Include="Pages\Resource\League\" />
+    <Folder Include="Pages\Resource\User\" />
+    <Folder Include="Pages\Resource\Transation\" />
+    <Folder Include="Pages\Resource\Team\" />
+    <Folder Include="Pages\Resource\Roster\" />
+    <Folder Include="Pages\Resource\Player\" />
+  </ItemGroup>
 </Project>

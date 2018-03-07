@@ -1,39 +1,36 @@
 ﻿
 
+@inject YahooFantasyWrapper.Client.IYahooAuthClient AuthClient;
 
-<form method="post" class="navbar-right">
-    @if (TempData["auth"] != null)
-    {
-        ViewModel model = (ViewModel)TempData["auth"];
-
-        var nickname = model.Profile.Nickname;
-        var url = model.Profile.Image.ImageUrl;
-
+@if (AuthClient.UserInfo != null)
+{
+    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav">
             <li class="dropdown">
                 <a class="user clearfix dropdown-toggle" href="#" data-toggle="dropdown">
                     <div class="name">
-                        @nickname
+                        @AuthClient.UserInfo.Profile.Nickname
                     </div>
                     <div class="avatar">
-                        <img src="@url" />
+                        <img src="@AuthClient.UserInfo.Profile.Image.ImageUrl" />
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <button type="submit" class="clean-button" asp-page-handler="Logout" value="Logout">Log Out</button>
-                        @*<link-button asp-page-handler="Logout" >Log Out</link-button>*@
+                        <link-button>Log Out</link-button>
                     </li>
                 </ul>
             </li>
         </ul>
-    }
-    else
-    {
+    </form>
+}
+else
+{
+    <form asp-controller="Account" asp-action="Login" method="post" id="loginForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <button type="submit" class="btn login-btn" asp-page-handler="Login" value="Login">Log In with Yahoo!</button>
+                <button type="submit" class="btn login-btn">Log In</button>
             </li>
         </ul>
-    }
-</form>
+    </form>
+}

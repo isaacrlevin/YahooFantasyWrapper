@@ -19,6 +19,17 @@ html[xmlns] .clearfix {
     height: 1%;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    padding: 20px;
+    min-height: 100%;
+    margin: 0 auto -91px;
+}
+
 body {
     font-family: sans-serif;
     padding-top: 50px;
@@ -36,15 +47,7 @@ a {
     a:hover {
         color: #703688;
     }
-.clean-button {
-    background: none !important;
-    border: none;
-    padding: 0 !important;
-    /*optional*/
-    font-family: arial,sans-serif; /*input has OS specific font-family*/
-    font-size: medium;
-    margin-left: 20px;
-}
+
 button.btn {
     background: #8e44ad;
     border: 2px solid white;
@@ -73,7 +76,7 @@ button.btn {
 
     .login h1,
     .login h4 {
-        font-family:  sans-serif;
+        font-family: sans-serif;
     }
 
     .login h1 {
@@ -118,16 +121,16 @@ button.btn {
         color: white;
     }
 
-        .navbar-inverse .navbar-nav > li > login-btn {
-            margin-top: 5px;
-            padding-bottom: 8px;
-            padding-top: 8px;
-        }
+    .navbar-inverse .navbar-nav > li > login-btn {
+        margin-top: 5px;
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
 
-        .navbar-inverse .navbar-nav > li > a:hover,
-        .navbar-inverse .navbar-nav > li.active > a {
-            background: #34193f;
-        }
+    .navbar-inverse .navbar-nav > li > a:hover,
+    .navbar-inverse .navbar-nav > li.active > a {
+        background: #34193f;
+    }
 
 .navbar .user {
     padding: 8px 10px;

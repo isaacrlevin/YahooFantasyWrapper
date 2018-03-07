@@ -24,6 +24,15 @@ namespace YahooFantasyWrapper.Client
 
         #region Game
 
+        internal static EndPoint GameEndPoint(string gameKey)
+        {
+            return new EndPoint
+            {
+                BaseUri = BaseApiUrl,
+                Resource = $"/game/{gameKey}"
+            };
+        }
+
         internal static EndPoint GameEndPoint(string gameKey, EndpointSubResources resource)
         {
             return new EndPoint

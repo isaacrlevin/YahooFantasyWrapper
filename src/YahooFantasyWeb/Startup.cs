@@ -31,9 +31,9 @@ namespace YahooFantasyWeb
             services.Configure<YahooConfiguration>((IConfiguration)this.Configuration.GetSection("YahooConfiguration"));
 
             //Add Services for YahooFantasyWrapper Package
-            services.AddTransient<IRequestFactory, RequestFactory>();
-            services.AddTransient<IYahooAuthClient, YahooAuthClient>();
-            services.AddTransient<IYahooFantasyClient, YahooFantasyClient>();
+            services.AddSingleton<IRequestFactory, RequestFactory>();
+            services.AddSingleton<IYahooAuthClient, YahooAuthClient>();
+            services.AddSingleton<IYahooFantasyClient, YahooFantasyClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,29 +10,14 @@ namespace YahooFantasyWeb
 {
     public static class Extensions
     {
-        public static byte[] ToBytes(this ViewModel obj)
+        public static string GetLocalUrl(this IUrlHelper urlHelper, string localUrl)
         {
-            if (obj == null)
-                return null;
-            BinaryFormatter bf = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream();
-            bf.Serialize(ms, obj);
-            return ms.ToArray();
-        }
+            if (!urlHelper.IsLocalUrl(localUrl))
+            {
+                return urlHelper.Page("/Index");
+            }
 
-        public static ViewModel ToViewModel(this byte[] arrBytes)
-        {
-            MemoryStream memStream = new MemoryStream();
-            BinaryFormatter binForm = new BinaryFormatter();
-            memStream.Write(arrBytes, 0, arrBytes.Length);
-            memStream.Seek(0, SeekOrigin.Begin);
-            ViewModel obj = (ViewModel)binForm.Deserialize(memStream);
-            return obj;
-        }
-
-        public static void GetViewBag()
-        {
-
+            return localUrl;
         }
     }
 }

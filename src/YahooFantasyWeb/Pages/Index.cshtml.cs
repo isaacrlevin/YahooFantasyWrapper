@@ -19,7 +19,6 @@ namespace YahooFantasyWeb.Pages
         private readonly IYahooAuthClient _authClient;
         private readonly IYahooFantasyClient _fantasyClient;
 
-
         private NameValueCollection Parameters
         {
             get
@@ -35,30 +34,16 @@ namespace YahooFantasyWeb.Pages
         }
         public async Task<IActionResult> OnGetAsync()
         {
-            byte[] bytes = null ;
-            var model = new ViewModel();
-
             // By default, Yahoo! sends a QS param with an Auth code, which the Wrapper handles and validates against Yahoo!
             // this check basically checks if that QS exists or not
-            if ((this.Parameters != null & this.Parameters.Count > 0) || (HttpContext.Session.TryGetValue("auth", out bytes)))
+            if ((this.Parameters != null & this.Parameters.Count > 0) || this._authClient.UserInfo != null)
             {
 
-                if (bytes == null)
+                if (this._authClient.UserInfo == null)
                 {
-                    UserInfo userInfo = await this._authClient.GetUserInfo(this.Parameters);
-                    model = new ViewModel
-                    {
-                        Token = this._authClient.Auth.AccessToken,
-                        Profile = userInfo.Profile
-                    };
-                    HttpContext.Session.Set("auth", model.ToBytes());
+                    this._authClient.UserInfo = await this._authClient.GetUserInfo(this.Parameters);
                 }
-                else
-                {
-                    model = bytes.ToViewModel();
-                } 
-                
-                TempData["auth"] = model;
+
                 //var leagues = await this._fantasyClient.UserResourceManager.GetUserGameLeagues(this._authClient.Auth.AccessToken, new string[] { "371" }, EndpointSubResourcesCollection.BuildResourceList(EndpointSubResources.Settings));
 
                 //var leagueKeys = leagues.GameList.Games.First(a => a.GameKey == "371").LeagueList.Leagues.Select(a => a.LeagueKey).ToArray();
@@ -89,27 +74,6 @@ namespace YahooFantasyWeb.Pages
                 //    });
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostLoginAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            return new RedirectResult(this._authClient.GetLoginLinkUri());
-        }
-
-        public async Task<IActionResult> OnPostLogoutAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            _authClient.Auth = null;
-            HttpContext.Session.Clear();
-            return RedirectToPage();
         }
     }
 }

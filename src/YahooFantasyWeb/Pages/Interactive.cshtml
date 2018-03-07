@@ -1,0 +1,13 @@
+﻿@page
+@model InteractiveModel
+@{
+    ViewData["Title"] = "Yahoo Fantasy Console";
+}
+
+
+<h1>Yahoo! Fantasy Interactive Console</h1>
+
+<form method="POST">
+    <select asp-for="Game" asp-items="Model.Games"></select>
+    <input type="submit" asp-page-handler="ListLeagues" value="Select" />
+</form>

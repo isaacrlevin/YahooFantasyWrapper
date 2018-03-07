@@ -55,6 +55,8 @@ namespace YahooFantasyWrapper.Client
         /// </summary>
         public IOptions<YahooConfiguration> Configuration { get; private set; }
 
+        public UserInfo UserInfo { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="YahooAuthClient"/> class.
         /// </summary>
@@ -294,6 +296,15 @@ namespace YahooFantasyWrapper.Client
 
             sb.Append(anchorText);
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Resets Auth for Context, this fires when user logs out
+        /// </summary>
+        public void ClearAuth()
+        {
+            this.Auth = new AuthModel();
+            this.UserInfo = null;
         }
     }
 }
