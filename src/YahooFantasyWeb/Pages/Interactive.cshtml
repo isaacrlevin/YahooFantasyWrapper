@@ -11,3 +11,14 @@
     <select asp-for="Game" asp-items="Model.Games"></select>
     <input type="submit" asp-page-handler="ListLeagues" value="Select" />
 </form>
+
+@if (Model.Leagues?.Count > 0)
+{
+
+    @for (var i = 0; i < Model.Leagues.Count; i++)
+    {
+        var league = Model.Leagues[i];
+        <p>Name: @league.Name</p>
+        <p>Key: @league.LeagueKey</p>
+    }
+}

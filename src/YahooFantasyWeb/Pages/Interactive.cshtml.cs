@@ -23,6 +23,11 @@ namespace YahooFantasyWeb.Pages
         [BindProperty]
         public string Game { get; set; }
 
+        [BindProperty]
+        public List<League> Leagues { get; set; }
+
+        [BindProperty]
+        [TempData]
         public List<SelectListItem> Games { get; set; }
 
         private NameValueCollection Parameters
@@ -42,11 +47,11 @@ namespace YahooFantasyWeb.Pages
         {
             var user = await this._fantasyClient.UserResourceManager.GetUser(_authClient.Auth.AccessToken);
             Games = user.GameList.Games
-                .Where(a=> a.Type == "full")
-                .OrderBy(a=> a.Season)
+                .Where(a => a.Type == "full")
+                .OrderBy(a => a.Season)
                 .Select(a => new SelectListItem { Value = a.GameId, Text = (a.Season + " - " + a.Name) })
                 .ToList();
-           
+
             return Page();
         }
 
@@ -57,7 +62,14 @@ namespace YahooFantasyWeb.Pages
                 return Page();
             }
 
-          
+            var games = await this._fantasyClient.UserResourceManager.GetUserGameLeagues(_authClient.Auth.AccessToken, new string[] { Game });
+
+            var league = games.GameList.Games.Where(a => a.GameKey == Game).FirstOrDefault();
+            if (league != null)
+            {
+                Leagues = league.LeagueList.Leagues;
+            }
+
             return Page();
         }
     }
