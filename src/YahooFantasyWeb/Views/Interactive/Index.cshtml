@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "Yahoo Football Trade Analyzer";
+}
+<div id="app">
+    <h1>Interactive Fantasy Tool</h1>
+    <p>
+        Use this tool to search all of your Yahoo! Leagues
+    </p>
+
+    Selected Game: <select v-model="selectedGame" v-on:change="chooseGame()">
+        <option disabled selected>Choose Game</option>
+        <option v-for="game in games" v-bind:value="game">
+            {{  game.name }} - {{game.season}}
+        </option>
+    </select>
+</div>
+@*@{
+        var serializedModel = Html.Raw(Json.Serialize(Model));
+        <script>
+                var model = @serializedModel;
+                console.log(model);
+        </script>
+    }*@
+
+<script>
+    //console.clear()
+
+    const v = new Vue({
+        el: '#app',
+        created: function () {
+            this.loadGames() 
+        },
+        data: {
+            model: model,
+            games: [],
+            selectedGame: {}
+        },
+        methods: {
+            chooseGame: function () {
+                var myTeam = this.selectedGame.teams.filter(function (team) {
+                    return team.isMyTeam == 1;
+                })[0];
+            },
+            loadGames: function () {
+
+                fetch('api/interactive', {
+                    method: 'GET',
+                    //headers: {
+                    //    'Accept': 'application/json',
+                    //    'Content-Type': 'application/json',
+                    //    'Authorization': 'Bearer ' + model.token,
+                    //},
+                    //body: JSON.stringify(viewModel)
+                }).then(response => {
+                    return response.json();
+                }).then(function (data) {
+
+                    this.games = data;
+
+                    return "";
+                });
+            }
+        }
+    });
+</script>

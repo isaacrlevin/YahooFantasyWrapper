@@ -27,7 +27,7 @@ namespace YahooFantasyWeb.Controllers
         public async Task<IActionResult> Logout(string returnUrl = null)
         {
             _authClient.ClearAuth();
-            return LocalRedirect(Url.GetLocalUrl(returnUrl));
+            return new RedirectResult("/Home");
         }
 
         [HttpPost]

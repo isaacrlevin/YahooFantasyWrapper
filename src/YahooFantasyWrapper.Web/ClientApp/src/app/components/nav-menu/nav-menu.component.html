@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler navbar-toggler-right" type="button" aria-controls="appNavigation" [attr.aria-expanded]="isExpanded" aria-label="Toggle navigation" (click)="toggle()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class='navbar-brand' [routerLink]='["/"]'>Yahoo Fantasy Wrapper Console</a>
+  <div class="collapse navbar-collapse" id="appNavigation" [ngbCollapse]="!isExpanded">
+    <ul class="navbar-nav mr-auto">
+      <li [routerLinkActive]='["link-active"]' class="nav-item active" [routerLinkActiveOptions]='{ exact: true }'>
+        <a [routerLink]='["/"]' class="nav-link" (click)='collapse()'>
+          <span class="oi oi-home"></span> Home
+        </a>
+      </li>
+      <li [routerLinkActive]='["link-active"]' class="nav-item" *ngIf="this.userService.getUser()">
+        <a [routerLink]='["/interactive"]' class="nav-link" (click)='collapse()'>
+          <span class="oi oi-media-play"></span> Interactive
+        </a>
+      </li>
+    </ul>
+    <div *ngIf="this.loadingService.isLoaded();else loading">
+      <div *ngIf="this.userService.getUser();else notLoggedIn">
+        <img [src]="!!imagePath ? imagePath : this.userService.getUser().userInfo.profile.image.imageUrl" height="50">  <span style="color:#9d9d9d;">Hello {{ this.userService.getUser().userInfo.profile.nickname }} </span><button (click)="logout()" class="btn logout-btn">Log Out</button>
+      </div>
+      <ng-template #notLoggedIn>
+        <button (click)="login()" class="btn login-btn">Log In</button>
+      </ng-template>
+    </div>
+    <ng-template #loading>
+    </ng-template>
+  </div>
+</nav>

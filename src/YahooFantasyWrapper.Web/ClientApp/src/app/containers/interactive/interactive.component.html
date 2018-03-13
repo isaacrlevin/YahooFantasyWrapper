@@ -1,0 +1,40 @@
+<h1>Interactive Fantasy Tool</h1>
+<p>
+  Use this tool to search all of your Yahoo! Leagues
+</p>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="container">
+  <div style="text-align:center">
+    <div class="row">
+      <div class="col">
+        <select [(ngModel)]="selectedGame">
+          <option [value]=null disabled>Choose Game</option>
+          <option *ngFor="let c of games" [ngValue]="c.gameKey">{{c.name}} - {{c.season}}</option>
+        </select>
+        <button type="button" (click)="getLeagues()">Get Leagues</button>
+        <select [(ngModel)]="selectedLeague">
+          <option [value]=null disabled>Choose League</option>
+          <option *ngFor="let c of leagues" [ngValue]="c.leagueKey">{{c.name}}</option>
+        </select>
+      </div><br /><br /><br />
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" (click)="getLeagueMetadata()">Get League</button>
+        <button type="button" (click)="getLeagueStandings()">Get Standings</button>
+        <button type="button" (click)="getLeagueTeams()">Get Teams</button>
+        <button type="button" (click)="getLeagueSettings()">Get Settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+<div style="display: block;
+    overflow-x: auto; width:100%;
+    padding: 0.5em; height: 1000px; overflow-y:scroll;
+    background: #272822;">
+  <json-viewer [json]="league" [expanded]="false">
+  </json-viewer>
+</div>
+

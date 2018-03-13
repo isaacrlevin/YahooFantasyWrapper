@@ -74,6 +74,15 @@ namespace YahooFantasyWrapper.Models
 
         [XmlElement(ElementName = "roster")]
         public Roster Roster { get; set; }
+        
+        [XmlElement(ElementName = "clinched_playoffs")]
+        public string ClinchedPlayoffs { get; set; }
+
+
+        [XmlElement(ElementName = "team_points")]
+        public TeamPoints TeamPoints { get; set; }
+        [XmlElement(ElementName = "team_standings")]
+        public TeamStandings TeamStandings { get; set; }
     }
 
     [XmlRoot(ElementName = "teams")]

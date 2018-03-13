@@ -66,6 +66,8 @@ namespace YahooFantasyWrapper.Models
         public TeamList TeamList { get; set; }
         [XmlElement(ElementName = "settings", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public Settings Settings { get; set; }
+        [XmlElement(ElementName = "standings", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
+        public Standings Standings { get; set; }
     }
 
     [XmlRoot(ElementName = "leagues", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
