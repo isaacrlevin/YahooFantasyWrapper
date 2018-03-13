@@ -15,3 +15,8 @@
 /src/YahooFantasyWeb/bin
 /src/YahooFantasyWeb/obj
 *.user
+/src/YahooFantasyWrapper.Web/ClientApp/package-lock.json
+/src/YahooFantasyWrapper.Web/web.config
+/src/YahooFantasyWrapper.Web/appsettings.Development.json
+/src/YahooFantasyWrapper.Web/appsettings.Production.Development.json
+/src/YahooFantasyWrapper.Web/appsettings.Production.json
