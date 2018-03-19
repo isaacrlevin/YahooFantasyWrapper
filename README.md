@@ -1,9 +1,11 @@
 # YahooFantasyWrapper
 
-Wrapper for the Yahoo Fantasy Sports API. Includes Authorization and Data Retrieval. Written in C# Targeting Dot Net Standard 2.0
+Wrapper for the Yahoo Fantasy Sports API. Includes Authorization and Data Retrieval. Written in C# Targeting Dot Net Standard 2.0. There is also a sample app here, which is deployed to [http://yfantasywrapper.azurewebsites.net](http://yfantasywrapper.azurewebsites.net)
 
-
-
+#Using the Sample App
+- Go to [http://yfantasywrapper.azurewebsites.net](http://yfantasywrapper.azurewebsites.net)
+- Click Login
+[![Login](_static/landingpage.png)]
 
 ### Using this Wrapper
 - git clone
@@ -14,6 +16,7 @@ Wrapper for the Yahoo Fantasy Sports API. Includes Authorization and Data Retrie
 ### Getting Api Access from Yahoo
 - Direct to [Yahoo Apps Page](https://developer.yahoo.com/apps/)
 - Fill Out Form as needed
+- Be sure set Callback to http://lvh.me
 - Copy Client Id and Client Secret (note Callback Domain as well)
 
 ### Dot Net Core 2.0 Example

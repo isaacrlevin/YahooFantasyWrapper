@@ -12,14 +12,14 @@
           <option [value]=null disabled>Choose Game</option>
           <option *ngFor="let c of games" [ngValue]="c.gameKey">{{c.name}} - {{c.season}}</option>
         </select>
-        <button type="button" (click)="getLeagues()">Get Leagues</button>
+        <button type="button" [style.visibility]="selectedGame !== null ? 'visible' : 'hidden'" (click)="getLeagues()">Get Leagues</button>
         <select [(ngModel)]="selectedLeague">
           <option [value]=null disabled>Choose League</option>
           <option *ngFor="let c of leagues" [ngValue]="c.leagueKey">{{c.name}}</option>
         </select>
       </div><br /><br /><br />
     </div>
-    <div class="row">
+    <div class="row" [style.visibility]="selectedLeague !== null ? 'visible' : 'hidden'">
       <div class="col">
         <button type="button" (click)="getLeagueMetadata()">Get League</button>
         <button type="button" (click)="getLeagueStandings()">Get Standings</button>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,20 +23,22 @@ namespace YahooFantasyWrapper.Client
         /// <returns></returns>
         internal static async Task<XDocument> GetResponseData(EndPoint endpoint, string AccessToken)
         {
-            RequestFactory _factory = new RequestFactory();
-            var client = _factory.CreateClient(endpoint, new AuthenticationHeaderValue("Bearer", AccessToken));
-
-            var request = _factory.CreateRequest(endpoint);
-
-            var response = await client.GetAsync(request.RequestUri).ConfigureAwait(false);
-            var result = await response.Content.ReadAsStringAsync();
-
-            if (string.IsNullOrEmpty(result))
+            return await await ResilientCall(async () =>
             {
-                throw new Exception("Combination of Resource and SubResources Not Allowed, Please try altering");
-            }
+                RequestFactory _factory = new RequestFactory();
+                var client = _factory.CreateClient(endpoint, new AuthenticationHeaderValue("Bearer", AccessToken));
 
-            return XDocument.Parse(result);
+                var request = _factory.CreateRequest(endpoint);
+
+                var response = await client.GetAsync(request.RequestUri).ConfigureAwait(false);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    throw new Exception("Combination of Resource and SubResources Not Allowed, Please try altering");
+                }
+                return XDocument.Parse(result);
+            });
         }
 
         /// <summary>
@@ -47,16 +51,20 @@ namespace YahooFantasyWrapper.Client
         /// <returns></returns>
         internal static async Task<List<T>> GetCollection<T>(EndPoint endPoint, string AccessToken, string lookup)
         {
-            var xml = await Utils.GetResponseData(endPoint, AccessToken);
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
-            List<XElement> xElements = xml.Descendants(YahooXml.XMLNS + lookup).ToList();
-            List<T> collection = new List<T>();
-            foreach (var element in xElements)
-            {
-                collection.Add((T)serializer.Deserialize(element.CreateReader()));
-            }
 
-            return collection;
+            return await await ResilientCall(async () =>
+            {
+                var xml = await Utils.GetResponseData(endPoint, AccessToken);
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                List<XElement> xElements = xml.Descendants(YahooXml.XMLNS + lookup).ToList();
+                List<T> collection = new List<T>();
+                foreach (var element in xElements)
+                {
+                    collection.Add((T)serializer.Deserialize(element.CreateReader()));
+                }
+
+                return collection;
+            });
         }
 
         /// <summary>
@@ -69,11 +77,67 @@ namespace YahooFantasyWrapper.Client
         /// <returns></returns>
         internal static async Task<T> GetResource<T>(EndPoint endPoint, string AccessToken, string lookup)
         {
-            var xml = await Utils.GetResponseData(endPoint, AccessToken);
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
-            XElement xElement = xml.Descendants(YahooXml.XMLNS + lookup).FirstOrDefault();
-            var resource = (T)serializer.Deserialize(xElement.CreateReader());
-            return resource;
+            return await await ResilientCall(async () =>
+            {
+                var xml = await Utils.GetResponseData(endPoint, AccessToken);
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                XElement xElement = xml.Descendants(YahooXml.XMLNS + lookup).FirstOrDefault();
+                var resource = (T)serializer.Deserialize(xElement.CreateReader());
+                return resource;
+            });
+        }
+
+        async static Task<T> ResilientCall<T>(Func<T> block)
+        {
+            int currentRetry = 0;
+            TimeSpan delay = TimeSpan.FromSeconds(2);
+
+            for (; ; )
+            {
+                try
+                {
+                    return block();
+                }
+                catch (Exception ex)
+                {
+                    Trace.TraceError("Operation Exception");
+
+                    currentRetry++;
+
+                    // Check if the exception thrown was a transient exception
+                    // based on the logic in the error detection strategy.
+                    // Determine whether to retry the operation, as well as how
+                    // long to wait, based on the retry strategy.
+                    if (currentRetry > 3 || !IsTransient(ex))
+                    {
+                        // If this isn't a transient error or we shouldn't retry, 
+                        // rethrow the exception.
+                        throw;
+                    }
+                }
+
+                // Wait to retry the operation.
+                // Consider calculating an exponential delay here and
+                // using a strategy best suited for the operation and fault.
+                await Task.Delay(delay);
+            }
+        }
+
+        private static bool IsTransient(Exception ex)
+        {
+            var webException = ex as WebException;
+            if (webException != null)
+            {
+                // If the web exception contains one of the following status values
+                // it might be transient.
+                return new[] {WebExceptionStatus.ConnectionClosed,
+                  WebExceptionStatus.Timeout,
+                  WebExceptionStatus.RequestCanceled }.
+                        Contains(webException.Status);
+            }
+
+            // Additional exception checking logic goes here.
+            return false;
         }
     }
 }

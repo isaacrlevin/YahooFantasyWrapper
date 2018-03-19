@@ -6,11 +6,31 @@ using Microsoft.Extensions.DependencyInjection;
 using YahooFantasyWrapper.Client;
 using YahooFantasyWrapper.Configuration;
 using YahooFantasyWrapper.Infrastructure;
+using Microsoft.ApplicationInsights.AspNetCore;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.SnapshotCollector;
+using System;
+using Microsoft.Extensions.Options;
+using YahooFantasyWrapper.Web.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace YahooFantasyWrapper.Web
 {
     public class Startup
     {
+        private class SnapshotCollectorTelemetryProcessorFactory : ITelemetryProcessorFactory
+        {
+            private readonly IServiceProvider _serviceProvider;
+
+            public SnapshotCollectorTelemetryProcessorFactory(IServiceProvider serviceProvider) =>
+                _serviceProvider = serviceProvider;
+
+            public ITelemetryProcessor Create(ITelemetryProcessor next)
+            {
+                var snapshotConfigurationOptions = _serviceProvider.GetService<IOptions<SnapshotCollectorConfiguration>>();
+                return new SnapshotCollectorTelemetryProcessor(next, configuration: snapshotConfigurationOptions.Value);
+            }
+        }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,6 +43,11 @@ namespace YahooFantasyWrapper.Web
         {
             services.AddMvc();
 
+            services.Configure<SnapshotCollectorConfiguration>(Configuration.GetSection(nameof(SnapshotCollectorConfiguration)));
+
+            // Add SnapshotCollector telemetry processor.
+            services.AddSingleton<ITelemetryProcessorFactory>(sp => new SnapshotCollectorTelemetryProcessorFactory(sp));
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -33,9 +58,12 @@ namespace YahooFantasyWrapper.Web
 
             //Add Services for YahooFantasyWrapper Package
             services.AddSingleton<IRequestFactory, RequestFactory>();
-            services.AddSingleton<IYahooAuthClient, YahooAuthClient>();
+            services.AddTransient<IYahooAuthClient, YahooAuthClient>();
             services.AddSingleton<IYahooFantasyClient, YahooFantasyClient>();
-        }
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddSingleton<ITelemetryInitializer, RequestBodyInitializer>();        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

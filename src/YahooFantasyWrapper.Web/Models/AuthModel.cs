@@ -12,4 +12,11 @@ namespace YahooFantasyWrapper.Web.Models
 
         public UserInfo UserInfo { get; set; }
     }
+
+    public class PostModel
+    {
+        public string AccessToken { get; set; }
+
+        public string Key { get; set; }
+    }
 }

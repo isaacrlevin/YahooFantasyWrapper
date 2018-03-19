@@ -20,29 +20,29 @@ export class InteractiveService {
 
   getGames() {
     let user = this.userService.getUser();
-    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetGames`, null);
+    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetGames`, { accessToken: this.userService.getUser().accessToken, key: null });
   }
 
   getLeagues(gameKey: string) {
     let user = this.userService.getUser();
-    return this.http.get<any>(`${this.baseUrl}api/Interactive/GetLeagues?gameKey=${gameKey}`);
+    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetLeagues`, { accessToken: this.userService.getUser().accessToken, key: gameKey });
   }
 
   getLeagueMetadata(leagueKey: string) {
     let user = this.userService.getUser();
-    return this.http.get<any>(`${this.baseUrl}api/Interactive/GetLeagueMetadata?leagueKey=${leagueKey}`);
+    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetLeagueMetadata`, { accessToken: this.userService.getUser().accessToken, key: leagueKey });
   }
 
   getLeagueStandings(leagueKey: string) {
     let user = this.userService.getUser();
-    return this.http.get<any>(`${this.baseUrl}api/Interactive/GetLeagueStandings?leagueKey=${leagueKey}`);
+    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetLeagueStandings`, { accessToken: this.userService.getUser().accessToken, key: leagueKey });
   }
   getLeagueSettings(leagueKey: string) {
     let user = this.userService.getUser();
-    return this.http.get<any>(`${this.baseUrl}api/Interactive/GetLeagueSettings?leagueKey=${leagueKey}`);
+    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetLeagueSettings`, { accessToken: this.userService.getUser().accessToken, key: leagueKey });
   }
   getLeagueTeams(leagueKey: string) {
     let user = this.userService.getUser();
-    return this.http.get<any>(`${this.baseUrl}api/Interactive/GetLeagueTeams?leagueKey=${leagueKey}`);
+    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetLeagueTeams`, { accessToken: this.userService.getUser().accessToken, key: leagueKey });
   }
 }
