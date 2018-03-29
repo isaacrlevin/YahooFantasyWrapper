@@ -142,12 +142,12 @@ namespace YahooFantasyWrapper.Client
 
         #region League
 
-        internal static EndPoint LeagueEndPoint(string leagueKey, EndpointSubResources resource)
+        internal static EndPoint LeagueEndPoint(string leagueKey, EndpointSubResources resource, int?[] weeks = null)
         {
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/league/{leagueKey}/{resource.ToFriendlyString()}"
+                Resource = $"/league/{leagueKey}/{resource.ToFriendlyString()}{BuildWeekList(weeks)}"
             };
         }
 

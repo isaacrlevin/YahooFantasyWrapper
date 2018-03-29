@@ -39,19 +39,19 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "short_invitation_url", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string ShortInvationUrl { get; set; }
         [XmlElement(ElementName = "allow_add_to_dl_extra_pos", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public string AllowAddToDlExtraPos { get; set; }
+        public bool AllowAddToDlExtraPos { get; set; }
         [XmlElement(ElementName = "is_pro_league", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public string IsProLeague { get; set; }
+        public bool IsProLeague { get; set; }
         [XmlElement(ElementName = "is_cash_league", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public string IsCashLeague { get; set; }
+        public bool IsCashLeague { get; set; }
         [XmlElement(ElementName = "current_week", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public string CurrentWeek { get; set; }
+        public int CurrentWeek { get; set; }
         [XmlElement(ElementName = "start_week", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public string StartWeek { get; set; }
+        public int StartWeek { get; set; }
         [XmlElement(ElementName = "start_date", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string StartDate { get; set; }
         [XmlElement(ElementName = "end_week", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public string EndWeek { get; set; }
+        public int EndWeek { get; set; }
         [XmlElement(ElementName = "end_date", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string EndDate { get; set; }
         [XmlElement(ElementName = "game_code", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
@@ -68,6 +68,8 @@ namespace YahooFantasyWrapper.Models
         public Settings Settings { get; set; }
         [XmlElement(ElementName = "standings", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public Standings Standings { get; set; }
+        [XmlElement(ElementName = "scoreboard", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
+        public Scoreboard Scoreboard { get; set; }
     }
 
     [XmlRoot(ElementName = "leagues", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
