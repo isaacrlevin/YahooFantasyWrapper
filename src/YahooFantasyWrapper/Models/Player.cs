@@ -86,6 +86,8 @@ namespace YahooFantasyWrapper.Models
         public string HasPlayerNotes { get; set; }
         [XmlElement(ElementName = "transaction_data")]
         public TransactionData TransactionData { get; set; }
+        [XmlElement(ElementName = "selected_position")]
+        public SelectedPosition SelectedPosition { get; set; }
     }
 
     [XmlRoot(ElementName = "players", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]

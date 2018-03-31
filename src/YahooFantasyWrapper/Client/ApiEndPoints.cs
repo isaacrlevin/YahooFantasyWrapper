@@ -255,7 +255,7 @@ namespace YahooFantasyWrapper.Client
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/team{teamKey}/roster{BuildWeekList(new int?[] { week })}{BuildDate(date)}"
+                Resource = $"/team/{teamKey}/roster/{BuildWeekList(new int?[] { week })}{BuildDate(date)}"
             };
 
         }

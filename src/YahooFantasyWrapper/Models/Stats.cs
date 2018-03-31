@@ -5,7 +5,13 @@ using System.Xml.Serialization;
 
 namespace YahooFantasyWrapper.Models
 {
-    public enum SortOrder {  Asc = 0, Desc = 1}
+    public enum SortOrder
+    {
+        [XmlEnum("0")] Asc = 0,
+        [XmlEnum("1")] Desc = 1
+    }
+
+
     [XmlRoot(ElementName = "stat", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
     public class Stat
     {
