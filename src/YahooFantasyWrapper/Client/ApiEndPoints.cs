@@ -214,7 +214,7 @@ namespace YahooFantasyWrapper.Client
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/player{players}{BuildSubResourcesList(subresources)}"
+                Resource = $"/players{players}{BuildSubResourcesList(subresources)}"
             };
         }
 

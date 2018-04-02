@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using YahooFantasyWrapper.Infrastructure;
 
 namespace YahooFantasyWrapper.Models
 {
@@ -27,8 +28,16 @@ namespace YahooFantasyWrapper.Models
         public PositionTypes PositionTypes { get; set; }
         [XmlElement(ElementName = "position_type", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string PositionType { get; set; }
+
         [XmlElement(ElementName = "value", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public double Value { get; set; }
+        public string ValueText
+        {
+            get { return Value.HasValue ? Value.Value.ToString() : "-"; }
+            set { Value = StatParser.Parse(value); }
+        }
+
+        [XmlIgnore]
+        public double? Value { get; private set; }
     }
 
     [XmlRoot(ElementName = "stats", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]

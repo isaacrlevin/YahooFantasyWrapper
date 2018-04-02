@@ -70,6 +70,10 @@ namespace YahooFantasyWrapper.Models
         public Standings Standings { get; set; }
         [XmlElement(ElementName = "scoreboard", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public Scoreboard Scoreboard { get; set; }
+
+        [XmlElement(ElementName = "draft_results")]
+        public DraftResults DraftResults { get; set; }
+
     }
 
     [XmlRoot(ElementName = "leagues", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
@@ -80,4 +84,28 @@ namespace YahooFantasyWrapper.Models
         [XmlAttribute(AttributeName = "count")]
         public string Count { get; set; }
     }
+
+
+    [XmlRoot(ElementName = "draft_result")]
+    public class DraftResult
+    {
+        [XmlElement(ElementName = "pick")]
+        public int Pick { get; set; }
+        [XmlElement(ElementName = "round")]
+        public int Round { get; set; }
+        [XmlElement(ElementName = "team_key")]
+        public string TeamKey { get; set; }
+        [XmlElement(ElementName = "player_key")]
+        public string PlayerKey { get; set; }
+    }
+
+    [XmlRoot(ElementName = "draft_results")]
+    public class DraftResults
+    {
+        [XmlElement(ElementName = "draft_result")]
+        public List<DraftResult> DraftResult { get; set; }
+        [XmlAttribute(AttributeName = "count")]
+        public string Count { get; set; }
+    }
+
 }
