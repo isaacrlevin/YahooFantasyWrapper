@@ -48,6 +48,9 @@ namespace YahooFantasyWrapper.Web.Controllers
             var Games = user.GameList.Games
                     .Where(a => a.GameKey == a.GameKey)
                     .Select(a => a.LeagueList.Leagues).FirstOrDefault();
+
+            var leagues = await this._fantasyClient.UserResourceManager.GetUserGameLeagues(model.AccessToken, new string[] { model.Key }, EndpointSubResourcesCollection.BuildResourceList(EndpointSubResources.Roster));
+
             return Games;
         }
 
@@ -73,6 +76,18 @@ namespace YahooFantasyWrapper.Web.Controllers
         public async Task<League> GetLeagueTeams([FromBody] PostModel model)
         {
             return await this._fantasyClient.LeagueResourceManager.GetTeams(model.Key, model.AccessToken);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<League> GetLeagueScoreboard([FromBody] PostModel model)
+        {
+            return await this._fantasyClient.LeagueResourceManager.GetScoreboard(model.Key, model.AccessToken);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<League> GetDraftResults([FromBody] PostModel model)
+        {
+            return await this._fantasyClient.LeagueResourceManager.GetDraftResults(model.Key, model.AccessToken);
         }
     }
 }

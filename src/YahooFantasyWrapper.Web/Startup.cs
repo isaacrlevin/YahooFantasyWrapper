@@ -11,8 +11,8 @@ using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.SnapshotCollector;
 using System;
 using Microsoft.Extensions.Options;
-using YahooFantasyWrapper.Web.Extensions;
 using Microsoft.AspNetCore.Http;
+using ApplicationInsightsTelemetryExtensions;
 
 namespace YahooFantasyWrapper.Web
 {
