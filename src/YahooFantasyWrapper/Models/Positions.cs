@@ -41,6 +41,17 @@ namespace YahooFantasyWrapper.Models
         public string Count { get; set; }
     }
 
+    [XmlRoot(ElementName = "selected_position")]
+    public class SelectedPosition
+    {
+        [XmlElement(ElementName = "coverage_type")]
+        public string CoverageType { get; set; }
+        [XmlElement(ElementName = "date")]
+        public string Date { get; set; }
+        [XmlElement(ElementName = "position")]
+        public string Position { get; set; }
+    }
+
     [XmlRoot(ElementName = "roster_positions", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
     public class RosterPositions
     {

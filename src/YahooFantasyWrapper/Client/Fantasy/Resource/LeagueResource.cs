@@ -52,16 +52,18 @@ namespace YahooFantasyWrapper.Client
         {
             return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.Standings), AccessToken, "league");
         }
+
         /// <summary>
         /// Get League Resource with Scoreboard Subresource
         /// https://fantasysports.yahooapis.com/fantasy/v2/league/{leagueKey}/scoreboard
         /// </summary>
         /// <param name="leagueKey">LeagueKey to Query</param>
         /// <param name="AccessToken">Access Token from Auth Api</param>
+        /// <param name="weeks">Weeks to get the scoreboards for</param>
         /// <returns>League Resource</returns>
-        public async Task<League> GetScoreboard(string leagueKey, string AccessToken)
+        public async Task<League> GetScoreboard(string leagueKey, string AccessToken, int?[] weeks = null)
         {
-            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.Scoreboard), AccessToken, "league");
+            return await Utils.GetResource<League>(ApiEndpoints.LeagueEndPoint(leagueKey, EndpointSubResources.Scoreboard, weeks), AccessToken, "league");
         }
         /// <summary>
         /// Get League Resource with Teams Subresource

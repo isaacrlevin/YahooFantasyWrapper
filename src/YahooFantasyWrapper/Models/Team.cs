@@ -36,8 +36,7 @@ namespace YahooFantasyWrapper.Models
         public string Value { get; set; }
     }
 
-    [XmlRoot(ElementName = "team")]
-    public class Team
+    public abstract class TeamBase
     {
         [XmlElement(ElementName = "team_key")]
         public string TeamKey { get; set; }
@@ -46,7 +45,7 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "name")]
         public string Name { get; set; }
         [XmlElement(ElementName = "is_owned_by_current_login")]
-        public string IsOwnedByCurrentLogin { get; set; }
+        public bool IsOwnedByCurrentLogin { get; set; }
         [XmlElement(ElementName = "url")]
         public string Url { get; set; }
         [XmlElement(ElementName = "team_logos")]
@@ -64,20 +63,24 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "league_scoring_type")]
         public string LeagueScoringType { get; set; }
         [XmlElement(ElementName = "has_draft_grade")]
-        public string HasDraftGrade { get; set; }
+        public bool HasDraftGrade { get; set; }
         [XmlElement(ElementName = "draft_grade")]
         public string DraftGrade { get; set; }
         [XmlElement(ElementName = "draft_recap_url")]
         public string DraftRecapUrl { get; set; }
         [XmlElement(ElementName = "managers")]
         public ManagerList ManagerList { get; set; }
+        [XmlElement(ElementName = "clinched_playoffs")]
+        public bool ClinchedPlayoffs { get; set; }
+    }
 
+    [XmlRoot(ElementName = "team")]
+    public class Team : TeamBase
+    {
+        
         [XmlElement(ElementName = "roster")]
         public Roster Roster { get; set; }
         
-        [XmlElement(ElementName = "clinched_playoffs")]
-        public string ClinchedPlayoffs { get; set; }
-
 
         [XmlElement(ElementName = "team_points")]
         public TeamPoints TeamPoints { get; set; }
