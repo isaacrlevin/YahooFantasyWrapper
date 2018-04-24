@@ -5,7 +5,17 @@ Wrapper for the Yahoo Fantasy Sports API. Includes Authorization and Data Retrie
 #Using the Sample App
 - Go to [http://yfantasywrapper.azurewebsites.net](http://yfantasywrapper.azurewebsites.net)
 - Click Login
-[![Login](_static/landingpage.png)]
+
+![Login](_static/landingpage.png)
+
+
+- You will be directed to Yahoo! Auth Page, and asked to login (notice the url is Yahoo! meaning the app does not collect or track login information
+![Login](_static/yahooauth.png)
+
+- After logging in and giving app read-only access to profile, you will be directed back to Home, with logged in status
+![Login](_static/authlanding.png)
+
+
 
 ### Using this Wrapper
 - git clone
