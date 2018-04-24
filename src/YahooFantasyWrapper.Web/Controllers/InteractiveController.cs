@@ -48,9 +48,6 @@ namespace YahooFantasyWrapper.Web.Controllers
             var Games = user.GameList.Games
                     .Where(a => a.GameKey == a.GameKey)
                     .Select(a => a.LeagueList.Leagues).FirstOrDefault();
-
-            var leagues = await this._fantasyClient.UserResourceManager.GetUserGameLeagues(model.AccessToken, new string[] { model.Key }, EndpointSubResourcesCollection.BuildResourceList(EndpointSubResources.Roster));
-
             return Games;
         }
 
