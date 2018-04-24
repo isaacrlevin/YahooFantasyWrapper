@@ -21,7 +21,7 @@ namespace YahooFantasyWrapper.Client
         /// <returns>Leagues Collection (List of League Resources)</returns>
         public async Task<List<League>> GetLeagues(string AccessToken, string[] leagueKeys = null, EndpointSubResourcesCollection subresources = null)
         {
-            return await Utils.GetCollection<League>(ApiEndpoints.LeaguesEndPoint(leagueKeys, subresources), AccessToken, "game");
+            return await Utils.GetCollection<League>(ApiEndpoints.LeaguesEndPoint(leagueKeys, subresources), AccessToken, "league");
         }
     }
 }

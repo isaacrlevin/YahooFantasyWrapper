@@ -20,3 +20,5 @@
 /src/YahooFantasyWrapper.Web/appsettings.Development.json
 /src/YahooFantasyWrapper.Web/appsettings.Production.Development.json
 /src/YahooFantasyWrapper.Web/appsettings.Production.json
+*.nupkg
+*.dtbcache
