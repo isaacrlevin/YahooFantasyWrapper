@@ -82,9 +82,24 @@ namespace YahooFantasyWrapper.Client
                 var xml = await Utils.GetResponseData(endPoint, AccessToken);
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 XElement xElement = xml.Descendants(YahooXml.XMLNS + lookup).FirstOrDefault();
+                if (xElement == null && IsError(xml))                
+                    throw new InvalidOperationException(GetErrorMessage(xml));
+                if (xElement == null)
+                    throw new InvalidOperationException($"Invalid XML returned. {xml}");
+
                 var resource = (T)serializer.Deserialize(xElement.CreateReader());
                 return resource;
             });
+        }
+
+        private static string GetErrorMessage(XDocument xml)
+        {            
+            var result = 
+                from e in xml.Root.Elements()
+                where e.Name.LocalName == "description"
+                select e.Value;                
+            
+            return result.FirstOrDefault() ?? "Unknown XML";
         }
 
         async static Task<T> ResilientCall<T>(Func<T> block)
@@ -139,5 +154,12 @@ namespace YahooFantasyWrapper.Client
             // Additional exception checking logic goes here.
             return false;
         }
+
+
+        private static bool IsError(XDocument xml)
+        {
+            return string.Equals(xml.Root.Name.LocalName, "error", StringComparison.OrdinalIgnoreCase);
+        }
+
     }
 }

@@ -36,9 +36,9 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "guid", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string Guid { get; set; }
         [XmlElement(ElementName = "is_commissioner", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public string IsCommissioner { get; set; }
+        public bool IsCommissioner { get; set; }
         [XmlElement(ElementName = "is_current_login", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
-        public string IsCurrentLogin { get; set; }
+        public bool IsCurrentLogin { get; set; }
         [XmlElement(ElementName = "email", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public string Email { get; set; }
         [XmlElement(ElementName = "image_url", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]

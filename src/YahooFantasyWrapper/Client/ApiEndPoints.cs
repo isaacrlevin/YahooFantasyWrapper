@@ -142,12 +142,12 @@ namespace YahooFantasyWrapper.Client
 
         #region League
 
-        internal static EndPoint LeagueEndPoint(string leagueKey, EndpointSubResources resource)
+        internal static EndPoint LeagueEndPoint(string leagueKey, EndpointSubResources resource, int?[] weeks = null)
         {
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/league/{leagueKey}/{resource.ToFriendlyString()}"
+                Resource = $"/league/{leagueKey}/{resource.ToFriendlyString()}{BuildWeekList(weeks)}"
             };
         }
 
@@ -214,7 +214,7 @@ namespace YahooFantasyWrapper.Client
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/player{players}{BuildSubResourcesList(subresources)}"
+                Resource = $"/players{players}{BuildSubResourcesList(subresources)}"
             };
         }
 
@@ -255,7 +255,7 @@ namespace YahooFantasyWrapper.Client
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/team{teamKey}/roster{BuildWeekList(new int?[] { week })}{BuildDate(date)}"
+                Resource = $"/team/{teamKey}/roster/{BuildWeekList(new int?[] { week })}{BuildDate(date)}"
             };
 
         }
