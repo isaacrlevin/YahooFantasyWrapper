@@ -29,6 +29,7 @@ Task("Version")
         versionInfo = GitVersion(new GitVersionSettings{ OutputType = GitVersionOutput.Json });
     });
 
+
 Task("Build")
     .IsDependentOn("Clean")
     .IsDependentOn("Version")
