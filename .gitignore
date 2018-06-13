@@ -22,3 +22,5 @@
 /src/YahooFantasyWrapper.Web/appsettings.Production.json
 *.nupkg
 *.dtbcache
+tools
+artifacts
