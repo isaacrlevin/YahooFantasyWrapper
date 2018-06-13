@@ -31,7 +31,6 @@ Task("Version")
 
 Task("Build")
     .IsDependentOn("Clean")
-    .IsDependentOn("Version")
     .IsDependentOn("Restore")
     .Does(() => {
         MSBuild("./src/YahooFantasyWrapper/YahooFantasyWrapper.csproj");
