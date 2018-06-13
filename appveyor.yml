@@ -1,6 +1,7 @@
 assembly_info:
   patch: false
 
+image: Visual Studio 2017
 configuration:
   - Release
 
