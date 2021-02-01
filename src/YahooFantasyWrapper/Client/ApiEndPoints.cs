@@ -255,7 +255,7 @@ namespace YahooFantasyWrapper.Client
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/team/{teamKey}/roster/{BuildWeekList(new int?[] { week })}{BuildDate(date)}"
+                Resource = $"/team/{teamKey}/roster/{BuildWeekList(week != null ? new [] { week } : null)}{BuildDate(date)}"
             };
 
         }
@@ -408,10 +408,11 @@ namespace YahooFantasyWrapper.Client
             return $"";
         }
 
-        private static string BuildWeekList(int?[] weeks)
+        private static string BuildWeekList(int?[] weeksInput)
         {
             string weekString = "";
-            if (weeks != null && weeks.Length > 0)
+            var weeks = weeksInput?.Where(c => c.HasValue).ToList();
+            if (weeks != null && weeks.Any())
             {
                 weekString = $";week={ string.Join(",", weeks.Select(a => a.ToString()))}";
             }

@@ -81,6 +81,13 @@ namespace YahooFantasyWrapper.Client
             this.UserProfileGUID = responseJObject.SelectToken("xoauth_yahoo_guid")?.ToString();
         }
 
+        public async Task Login(NameValueCollection parameters)
+        {
+            GrantType = "authorization_code";
+            CheckErrorAndSetState(parameters);
+            await QueryAccessToken(parameters);
+        }
+
         /// <summary>
         /// Obtains user information using OAuth2 service and data provided via callback request.
         /// </summary>

@@ -42,5 +42,7 @@ namespace YahooFantasyWrapper.Client
         /// Resets Auth for Context, this fires when user logs out
         /// </summary>
         void ClearAuth();
+
+        Task Login(NameValueCollection parameters);
     }
 }
