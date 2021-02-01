@@ -45,4 +45,12 @@ export class InteractiveService {
     let user = this.userService.getUser();
     return this.http.post<any>(`${this.baseUrl}api/Interactive/GetLeagueTeams`, { accessToken: this.userService.getUser().accessToken, key: leagueKey });
   }
+  getLeagueScoreboard(leagueKey: string) {
+    let user = this.userService.getUser();
+    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetLeagueScoreboard`, { accessToken: this.userService.getUser().accessToken, key: leagueKey });
+  }
+  getLeagueDraftResults(leagueKey: string) {
+    let user = this.userService.getUser();
+    return this.http.post<any>(`${this.baseUrl}api/Interactive/GetDraftResults`, { accessToken: this.userService.getUser().accessToken, key: leagueKey });
+  }
 }

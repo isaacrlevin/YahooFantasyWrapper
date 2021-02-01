@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>YahooFantasyWrapper</PackageId>
     <Title>YahooFantasyWrapper</Title>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.2.0</PackageVersion>
     <LicenseUrl>https://github.com/isaac2004/YahooFantasyWrapper/blob/master/LICENSE.md</LicenseUrl>
     <ProjectUrl>https://github.com/isaac2004/YahooFantasyWrapper</ProjectUrl>
     <Authors>Isaac Levin</Authors>
@@ -13,7 +13,7 @@
     <PackageReleaseNotes>Added New Models and cleaned up bugs</PackageReleaseNotes>
     <Copyright>Copyright Isaac Levin. All rights reserved.</Copyright>
     <PackageTags>yahoo fantasy sports</PackageTags>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseUrl>https://github.com/isaac2004/YahooFantasyWrapper/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/isaac2004/YahooFantasyWrapper/</PackageProjectUrl>

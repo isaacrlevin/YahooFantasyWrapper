@@ -74,5 +74,17 @@ namespace YahooFantasyWrapper.Web.Controllers
         {
             return await this._fantasyClient.LeagueResourceManager.GetTeams(model.Key, model.AccessToken);
         }
+
+        [HttpPost("[action]")]
+        public async Task<League> GetLeagueScoreboard([FromBody] PostModel model)
+        {
+            return await this._fantasyClient.LeagueResourceManager.GetScoreboard(model.Key, model.AccessToken);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<League> GetDraftResults([FromBody] PostModel model)
+        {
+            return await this._fantasyClient.LeagueResourceManager.GetDraftResults(model.Key, model.AccessToken);
+        }
     }
 }

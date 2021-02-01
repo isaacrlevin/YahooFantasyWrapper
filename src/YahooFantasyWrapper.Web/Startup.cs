@@ -11,8 +11,9 @@ using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.SnapshotCollector;
 using System;
 using Microsoft.Extensions.Options;
-using YahooFantasyWrapper.Web.Extensions;
 using Microsoft.AspNetCore.Http;
+using ApplicationInsightsTelemetryExtensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace YahooFantasyWrapper.Web
 {
@@ -41,7 +42,15 @@ namespace YahooFantasyWrapper.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.Configure<SnapshotCollectorConfiguration>(Configuration.GetSection(nameof(SnapshotCollectorConfiguration)));
 
@@ -75,11 +84,13 @@ namespace YahooFantasyWrapper.Web
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                 app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            app.UseCookiePolicy();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
