@@ -110,7 +110,7 @@ namespace YahooFantasyWrapper.Models
         [XmlElement(ElementName = "player", Namespace = "http://fantasysports.yahooapis.com/fantasy/v2/base.rng")]
         public List<Player> Players { get; set; }
         [XmlAttribute(AttributeName = "count")]
-        public string Count { get; set; }
+        public int Count { get; set; }
     }
 
 
