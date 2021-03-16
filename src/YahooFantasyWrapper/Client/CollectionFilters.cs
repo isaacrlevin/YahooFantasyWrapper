@@ -28,8 +28,7 @@ namespace YahooFantasyWrapper.Client
         public string SortType { get; set; }
         public string SortSeason { get; set; }
         public string SortWeek { get; set; }
-        public DateTime? StartDate { get; set; }
-        public string StartIndex { get; set; }
-        public string Count { get; set; }
+        public int? Start { get; set; }
+        public int? Count { get; set; }
     }
 }

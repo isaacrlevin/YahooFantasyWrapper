@@ -1,7 +1,9 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+bin/
+obj/
+.vs/
 *.suo
 /src/YahooFantasyWrapper/obj
 /src/.vs/YahooFantasyWrapper/v15/Server/sqlite3

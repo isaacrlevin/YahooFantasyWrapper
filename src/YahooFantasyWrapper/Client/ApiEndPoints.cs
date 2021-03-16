@@ -1,9 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using YahooFantasyWrapper.Models;
-//using System.Net;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace YahooFantasyWrapper.Client
 {
@@ -255,7 +252,7 @@ namespace YahooFantasyWrapper.Client
             return new EndPoint
             {
                 BaseUri = BaseApiUrl,
-                Resource = $"/team/{teamKey}/roster/{BuildWeekList(new int?[] { week })}{BuildDate(date)}"
+                Resource = $"/team/{teamKey}/roster/{BuildWeekList(week != null ? new [] { week } : null)}{BuildDate(date)}"
             };
 
         }
@@ -404,14 +401,37 @@ namespace YahooFantasyWrapper.Client
 
         private static string BuildPlayersFiltersList(PlayerCollectionFilters filters)
         {
+            //https://developer.yahoo.com/fantasysports/guide/#id47
+            string filter = "";
+            if (filters == null)
+                return filter;
 
-            return $"";
+            if (filters.Count.HasValue)
+                filter += $";count={filters.Count}";
+            if (!string.IsNullOrWhiteSpace(filters.Search))
+                filter += $";search={filters.Search}";
+            if (filters.Positions?.Any() ?? false)
+                filter += $";position={string.Join(",",filters.Positions)}";
+            if (!string.IsNullOrWhiteSpace(filters.Sort))
+                filter += $";sort={filters.Sort}";
+            if (!string.IsNullOrWhiteSpace(filters.SortSeason))
+                filter += $";sort_season={filters.SortSeason}";
+            if (!string.IsNullOrWhiteSpace(filters.SortType))
+                filter += $";sort_type={filters.SortType}";
+            if (!string.IsNullOrWhiteSpace(filters.SortWeek))
+                filter += $";sort_week={filters.SortWeek}";//football only
+            if (filters.Start.HasValue)
+                filter += $";start={filters.Start}";
+            if (filters.Statuses?.Any() ?? false)
+                filter += $";status={string.Join(",", filters.Statuses)}";
+            return filter;
         }
 
-        private static string BuildWeekList(int?[] weeks)
+        private static string BuildWeekList(int?[] weeksInput)
         {
             string weekString = "";
-            if (weeks != null && weeks.Length > 0)
+            var weeks = weeksInput?.Where(c => c.HasValue).ToList();
+            if (weeks != null && weeks.Any())
             {
                 weekString = $";week={ string.Join(",", weeks.Select(a => a.ToString()))}";
             }

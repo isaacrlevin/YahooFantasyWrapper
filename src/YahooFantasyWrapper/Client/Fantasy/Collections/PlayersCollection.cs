@@ -32,11 +32,12 @@ namespace YahooFantasyWrapper.Client
         /// </summary>
         /// <param name="leagueKeys">League Keys to return Resources for </param>
         /// <param name="subresources">SubResources to include with Player Resource</param>
+        /// <param name="filters">Filters to include with Player Resource</param>
         /// <param name="AccessToken">Token for request</param>
         /// <returns>Players Collection (List of Player Resources)</returns>
-        public async Task<List<League>> GetLeaguePlayers(string[] leagueKeys, string AccessToken, EndpointSubResourcesCollection subresources = null)
+        public async Task<List<League>> GetLeaguePlayers(string[] leagueKeys, string AccessToken, EndpointSubResourcesCollection subresources = null, PlayerCollectionFilters filters = null)
         {
-            return await Utils.GetCollection<League>(ApiEndpoints.PlayersLeagueEndPoint(leagueKeys, subresources), AccessToken, "league");
+            return await Utils.GetCollection<League>(ApiEndpoints.PlayersLeagueEndPoint(leagueKeys, subresources, filters), AccessToken, "league");
         }
 
         /// <summary>
